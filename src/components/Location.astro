@@ -1,0 +1,73 @@
+---
+import { event } from "./event.js";
+
+const { name, address, mapsQuery } = event.location;
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`;
+---
+
+<section class="mt-10" aria-labelledby="location-title">
+  <!-- Encabezado con icono y dirección -->
+  <div class="flex items-start gap-3">
+    <span class="grid size-10 place-items-center rounded-lg bg-secondary/50 text-primary" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
+      </svg>
+    </span>
+    <div>
+      <h2 id="location-title" class="text-base font-semibold text-gray-900">{name}</h2>
+      <p class="text-sm text-muted">{address}</p>
+    </div>
+  </div>
+
+  <!-- Mapa visual con CTA -->
+  <div class="relative mt-4 overflow-hidden rounded-xl2 bg-secondary/40 shadow-card">
+    <svg
+      class="h-44 w-full sm:h-52"
+      viewBox="0 0 600 220"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Mapa decorativo del lugar del evento"
+    >
+      <defs>
+        <linearGradient id="map-bg" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stop-color="#cfe7da"></stop>
+          <stop offset="100%" stop-color="#a7d7c5"></stop>
+        </linearGradient>
+      </defs>
+      <rect width="600" height="220" fill="url(#map-bg)"></rect>
+      <!-- Calles -->
+      <g stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.7">
+        <path d="M-20 70 L380 90 L640 60"></path>
+        <path d="M-20 160 L260 150 L640 180"></path>
+        <path d="M120 -20 L160 240"></path>
+        <path d="M420 -20 L460 240"></path>
+      </g>
+      <!-- Pin -->
+      <g transform="translate(300 95)">
+        <circle r="22" fill="#ffffff" opacity="0.6"></circle>
+        <path
+          d="M0 -16 a12 12 0 1 1 -0.01 0 Z M0 -4 l0 16"
+          fill="#2f6b4f"
+          stroke="#2f6b4f"
+          stroke-width="3"
+          stroke-linejoin="round"
+        ></path>
+        <circle cy="-16" r="4" fill="#ffffff"></circle>
+      </g>
+    </svg>
+
+    <a
+      href={mapsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="absolute right-4 bottom-4 inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 text-sm font-medium text-primary shadow-soft transition hover:bg-accent"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="12 2 22 8.5 12 15 2 8.5 12 2"></polygon>
+        <polyline points="2 15.5 12 22 22 15.5"></polyline>
+      </svg>
+      Get directions
+    </a>
+  </div>
+</section>

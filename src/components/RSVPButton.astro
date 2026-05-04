@@ -1,0 +1,14 @@
+---
+import { event } from "./event.js";
+
+const { url, label } = event.rsvp;
+---
+
+<section class="mt-10" aria-label="Confirmar asistencia">
+  <a
+    href={url}
+    class="block w-full rounded-full bg-primary py-4 text-center text-base font-semibold text-white shadow-card transition hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:text-lg"
+  >
+    {label}
+  </a>
+</section>

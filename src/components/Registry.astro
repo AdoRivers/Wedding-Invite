@@ -1,0 +1,27 @@
+---
+import { event } from "./event.js";
+
+const { title, description, url } = event.registry;
+---
+
+<section class="mt-10" aria-labelledby="registry-title">
+  <a
+    href={url}
+    class="block rounded-xl2 bg-surface p-6 shadow-card transition hover:-translate-y-0.5 hover:shadow-soft"
+  >
+    <span class="grid size-10 place-items-center rounded-lg bg-accent text-primary" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 12 20 22 4 22 4 12"></polyline>
+        <rect x="2" y="7" width="20" height="5"></rect>
+        <line x1="12" y1="22" x2="12" y2="7"></line>
+        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7Z"></path>
+        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7Z"></path>
+      </svg>
+    </span>
+
+    <h2 id="registry-title" class="mt-4 text-base font-semibold text-gray-900">
+      {title}
+    </h2>
+    <p class="mt-1 text-sm text-muted">{description}</p>
+  </a>
+</section>

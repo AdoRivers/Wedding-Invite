@@ -1,0 +1,70 @@
+---
+import { event } from "./event.js";
+
+const { date } = event;
+---
+
+<section class="mt-10" aria-labelledby="countdown-title">
+  <div class="rounded-xl2 bg-surface p-6 shadow-card sm:p-8">
+    <h2
+      id="countdown-title"
+      class="text-center text-xs font-medium uppercase tracking-[0.25em] text-primary/80 sm:text-sm"
+    >
+      Cuenta regresiva para la fiesta
+    </h2>
+
+    <div
+      class="mt-6 grid grid-cols-3 gap-3 sm:gap-6"
+      data-countdown
+      data-target={date}
+    >
+      {[
+        { key: "days", label: "Días" },
+        { key: "hours", label: "Horas" },
+        { key: "mins", label: "Minutos" },
+      ].map(({ key, label }) => (
+        <div class="flex flex-col items-center border-b-2 border-secondary/60 pb-2">
+          <span
+            class="text-3xl font-bold tabular-nums text-primary sm:text-4xl"
+            data-unit={key}
+          >00</span>
+          <span class="mt-1 text-[0.65rem] uppercase tracking-widest text-muted sm:text-xs">
+            {label}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // JS mínimo y autocontenido — solo cuenta regresiva.
+  const root = document.querySelector<HTMLElement>("[data-countdown]");
+  if (root?.dataset.target) {
+    const target = new Date(root.dataset.target).getTime();
+    const units = {
+      days: root.querySelector<HTMLElement>('[data-unit="days"]'),
+      hours: root.querySelector<HTMLElement>('[data-unit="hours"]'),
+      mins: root.querySelector<HTMLElement>('[data-unit="mins"]'),
+    };
+
+    const pad = (n: number) => String(Math.max(0, n)).padStart(2, "0");
+
+    const tick = () => {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        Object.values(units).forEach((el) => el && (el.textContent = "00"));
+        return false;
+      }
+      const days = Math.floor(diff / 86_400_000);
+      const hours = Math.floor((diff % 86_400_000) / 3_600_000);
+      const mins = Math.floor((diff % 3_600_000) / 60_000);
+      if (units.days) units.days.textContent = pad(days);
+      if (units.hours) units.hours.textContent = pad(hours);
+      if (units.mins) units.mins.textContent = pad(mins);
+      return true;
+    };
+
+    if (tick()) setInterval(tick, 60_000); // refresco cada minuto: suficiente para "mins"
+  }
+</script>

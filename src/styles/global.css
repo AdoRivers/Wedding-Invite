@@ -1,15 +1,52 @@
-@import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+/* ------------------------------------------------------------------
+ * Google Fonts ANTES del import de Tailwind.
+ * En Tailwind v4 los @import externos deben preceder al @import
+ * "tailwindcss" para que Lightning CSS los conserve.
+ * ------------------------------------------------------------------ */
+ @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap");
 
-:root {
-  --color-primary: #2f6b4f;
-  --color-secondary: #a7d7c5;
-  --color-accent: #e8f3ec;
-
-  --font-title: "Great Vibes", cursive;
-  --font-body: "Poppins", sans-serif;
-
-  --radius-xl2: 1.5rem;
-
-  --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.08);
-}
+ @import "tailwindcss";
+ 
+ /* ------------------------------------------------------------------
+  * Design tokens — Tailwind v4 expone estas variables como utilidades:
+  *   --color-*        → bg-*, text-*, border-*, ring-*, etc.
+  *   --font-*         → font-*
+  *   --radius-*       → rounded-*
+  *   --shadow-*       → shadow-*
+  * El bloque @theme debe ir DESPUÉS de @import "tailwindcss".
+  * ------------------------------------------------------------------ */
+ @theme {
+   --color-primary: #2f6b4f;
+   --color-primary-dark: #1f4a37;
+   --color-secondary: #a7d7c5;
+   --color-accent: #e8f3ec;
+   --color-surface: #ffffff;
+   --color-muted: #6b7280;
+   --color-ink: #1f2937;
+ 
+   --font-title: "Great Vibes", cursive;
+   --font-body: "Poppins", system-ui, sans-serif;
+ 
+   --radius-xl2: 1.5rem;
+ 
+   --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.08);
+   --shadow-soft: 0 4px 12px rgba(47, 107, 79, 0.1);
+ }
+ 
+ /* ------------------------------------------------------------------
+  * Defaults base — se aplican antes de las utilidades.
+  * Usamos las variables generadas por @theme.
+  * ------------------------------------------------------------------ */
+ @layer base {
+   html {
+     font-family: var(--font-body);
+     color: var(--color-ink);
+     background-color: var(--color-accent);
+     scroll-behavior: smooth;
+   }
+ 
+   body {
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+   }
+ }
