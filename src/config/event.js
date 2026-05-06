@@ -5,7 +5,7 @@
 
 export const event = {
   honoree: {
-    name: "Chloe",
+    name: "Karen",
     age: 1,
     portrait: "/images/Cover.jpeg",
   },
@@ -20,14 +20,7 @@ export const event = {
 
   // Tarjetas de información: temática + dresscode
   info: [
-    {
-      key: "tematica",
-      label: "Temática",
-      title: "Perro asustado",
-      description: "Un perro asustado hermano, ve lo por tu bien.",
-      image: "/images/scared_dog.webp",
-      icon: "sparkles",
-    },
+
     {
       key: "dresscode",
       label: "Dresscode",

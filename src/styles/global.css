@@ -2,7 +2,7 @@
  * Google Fonts ANTES del import de Tailwind (Lightning CSS las preserva).
  * ------------------------------------------------------------------ */
  @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap");
-
+ @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap");
  @import "tailwindcss";
  
  /* ------------------------------------------------------------------
@@ -38,6 +38,7 @@
    /* Tipografías */
    --font-script: "Cormorant Garamond", "Times New Roman", serif;
    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+   --font-vibes: "Great Vibes", "Times New Roman", cursive;
  
    /* Radios y sombras */
    --radius-card: 1.25rem;

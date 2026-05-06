@@ -4,7 +4,7 @@ import InfoCard from "./InfoCard.astro";
 ---
 
 <section class="px-6 py-8" aria-label="Detalles del evento">
-  <div class="mx-auto grid max-w-md grid-cols-1 gap-4 sm:grid-cols-2">
+  <div class="mx-auto grid max-w-md grid-cols-1 gap-4 sm:grid-cols-1">
     {event.info.map((card, i) => (
       <InfoCard
         id={`infocard-${card.key}`}
