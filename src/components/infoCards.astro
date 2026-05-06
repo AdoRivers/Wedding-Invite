@@ -1,0 +1,20 @@
+---
+import { event } from "../config/event.js";
+import InfoCard from "./InfoCard.astro";
+---
+
+<section class="px-6 py-8" aria-label="Detalles del evento">
+  <div class="mx-auto grid max-w-md grid-cols-1 gap-4 sm:grid-cols-2">
+    {event.info.map((card, i) => (
+      <InfoCard
+        id={`infocard-${card.key}`}
+        label={card.label}
+        title={card.title}
+        description={card.description}
+        image={card.image}
+        icon={card.icon as "sparkles" | "hanger"}
+        variant={i === 0 ? "soft" : "white"}
+      />
+    ))}
+  </div>
+</section>

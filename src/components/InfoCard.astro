@@ -1,0 +1,104 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  description: string;
+  image: string;
+  icon: "sparkles" | "hanger";
+  variant?: "soft" | "white";
+  /** id único para enlazar checkbox y label (debe ser único en la página) */
+  id: string;
+}
+
+const { label, title, description, image, icon, variant = "soft", id } = Astro.props;
+
+const frontVariant =
+  variant === "soft" ? "bg-leaf-100" : "bg-surface ring-1 ring-leaf-100";
+---
+
+<!--
+  Flip card sin JS:
+  - El <input> peer guarda el estado (foco accesible, soporta tab + Enter).
+  - El <label> es la zona clickeable; su click marca/desmarca el checkbox.
+  - Cuando peer:checked, rotamos el inner 180° en eje Y.
+  - perspective + preserve-3d + backface-hidden = volteo real.
+-->
+<div class="group relative aspect-[4/5] [perspective:1200px]">
+  <input
+    type="checkbox"
+    id={id}
+    class="peer sr-only"
+    aria-label={`Ver imagen de ${title}`}
+  />
+
+  <label
+    for={id}
+    class="block h-full w-full cursor-pointer select-none [transform-style:preserve-3d] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] peer-checked:[transform:rotateY(180deg)] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-leaf-700 motion-reduce:transition-none"
+  >
+    <!-- ---------- FRONT ---------- -->
+    <div
+      class={`absolute inset-0 flex flex-col items-center justify-center rounded-card p-6 text-center [backface-visibility:hidden] sm:p-7 ${frontVariant}`}
+    >
+      <span
+        class="grid size-10 place-items-center rounded-full text-leaf-700"
+        aria-hidden="true"
+      >
+        {icon === "sparkles" && (
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"></path>
+            <circle cx="12" cy="12" r="2.5"></circle>
+          </svg>
+        )}
+        {icon === "hanger" && (
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 7a2 2 0 1 1 2-2"></path>
+            <path d="M12 7v2"></path>
+            <path d="M12 9 3 16h18z"></path>
+          </svg>
+        )}
+      </span>
+
+      <p class="mt-3 text-[0.65rem] uppercase tracking-[0.25em] text-muted">
+        {label}
+      </p>
+      <h3 class="mt-1 font-script text-2xl italic text-leaf-800 sm:text-3xl">
+        {title}
+      </h3>
+      <p class="mt-2 max-w-[18ch] text-sm text-leaf-800/80 text-balance">
+        {description}
+      </p>
+
+      <!-- Hint visual: "tocar para ver" -->
+      <span class="mt-4 inline-flex items-center gap-1 text-[0.6rem] uppercase tracking-widest text-leaf-700/70">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12a9 9 0 1 1-3-6.7"></path>
+          <polyline points="21 4 21 10 15 10"></polyline>
+        </svg>
+        Voltear
+      </span>
+    </div>
+
+    <!-- ---------- BACK ---------- -->
+    <div
+      class="absolute inset-0 overflow-hidden rounded-card [backface-visibility:hidden] [transform:rotateY(180deg)]"
+    >
+      <img
+        src={image}
+        alt={`Referencia visual de ${title}`}
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+      <!-- Velo verde para legibilidad del título -->
+      <div class="absolute inset-0 bg-gradient-to-t from-leaf-900/85 via-leaf-900/40 to-leaf-900/10"></div>
+      <div class="relative flex h-full flex-col justify-end p-6 text-white">
+        <p class="text-[0.65rem] uppercase tracking-[0.25em] text-leaf-200">
+          {label}
+        </p>
+        <h3 class="mt-1 font-script text-2xl italic sm:text-3xl">
+          {title}
+        </h3>
+      </div>
+    </div>
+  </label>
+</div>

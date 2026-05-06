@@ -1,14 +1,16 @@
 ---
-import { event } from "./event.js";
+import { event } from "../config/event.js";
 
 const { url, label } = event.rsvp;
 ---
 
-<section class="mt-10" aria-label="Confirmar asistencia">
-  <a
-    href={url}
-    class="block w-full rounded-full bg-primary py-4 text-center text-base font-semibold text-white shadow-card transition hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:text-lg"
-  >
-    {label}
-  </a>
+<section class="px-6 py-10" aria-label="Confirmar asistencia">
+  <div class="mx-auto max-w-md">
+    <a
+      href={url}
+      class="block w-full rounded-full bg-leaf-700 py-4 text-center text-base font-semibold text-white shadow-card transition hover:bg-leaf-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf-700 sm:text-lg"
+    >
+      {label}
+    </a>
+  </div>
 </section>

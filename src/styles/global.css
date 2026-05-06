@@ -1,47 +1,61 @@
 /* ------------------------------------------------------------------
- * Google Fonts ANTES del import de Tailwind.
- * En Tailwind v4 los @import externos deben preceder al @import
- * "tailwindcss" para que Lightning CSS los conserve.
+ * Google Fonts ANTES del import de Tailwind (Lightning CSS las preserva).
  * ------------------------------------------------------------------ */
- @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap");
+ @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap");
 
  @import "tailwindcss";
  
  /* ------------------------------------------------------------------
-  * Design tokens — Tailwind v4 expone estas variables como utilidades:
-  *   --color-*        → bg-*, text-*, border-*, ring-*, etc.
-  *   --font-*         → font-*
-  *   --radius-*       → rounded-*
-  *   --shadow-*       → shadow-*
-  * El bloque @theme debe ir DESPUÉS de @import "tailwindcss".
+  * Design tokens
+  * En Tailwind v4 los tokens dentro de @theme generan utilidades:
+  *   --color-* → bg-*, text-*, border-*, ring-*
+  *   --font-*  → font-*
+  *   --shadow-*→ shadow-*
+  *   --radius-*→ rounded-*
   * ------------------------------------------------------------------ */
  @theme {
-   --color-primary: #2f6b4f;
-   --color-primary-dark: #1f4a37;
-   --color-secondary: #a7d7c5;
-   --color-accent: #e8f3ec;
+   /* Paleta verde — del más claro (papel) al más oscuro (botellla) */
+   --color-leaf-50:  #f1f7f3;
+   --color-leaf-100: #e2efe7;
+   --color-leaf-200: #c6dfd0;
+   --color-leaf-300: #9cc5ad;
+   --color-leaf-400: #6ea687;
+   --color-leaf-500: #4a8866;
+   --color-leaf-600: #386b50;
+   --color-leaf-700: #2e5740;
+   --color-leaf-800: #264634;
+   --color-leaf-900: #1f3a2c;
+ 
+   /* Aliases semánticos */
+   --color-primary: var(--color-leaf-700);
+   --color-primary-soft: var(--color-leaf-100);
+   --color-accent: var(--color-leaf-300);
    --color-surface: #ffffff;
+   --color-canvas: #fafafa;
+   --color-ink: #1c1c1c;
    --color-muted: #6b7280;
-   --color-ink: #1f2937;
  
-   --font-title: "Great Vibes", cursive;
-   --font-body: "Poppins", system-ui, sans-serif;
+   /* Tipografías */
+   --font-script: "Cormorant Garamond", "Times New Roman", serif;
+   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
  
-   --radius-xl2: 1.5rem;
+   /* Radios y sombras */
+   --radius-card: 1.25rem;
+   --shadow-card: 0 8px 24px rgba(31, 58, 44, 0.08);
+   --shadow-soft: 0 2px 8px rgba(31, 58, 44, 0.06);
  
-   --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.08);
-   --shadow-soft: 0 4px 12px rgba(47, 107, 79, 0.1);
+   /* Animaciones reutilizables */
+   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
  }
  
  /* ------------------------------------------------------------------
-  * Defaults base — se aplican antes de las utilidades.
-  * Usamos las variables generadas por @theme.
+  * Defaults base
   * ------------------------------------------------------------------ */
  @layer base {
    html {
-     font-family: var(--font-body);
+     font-family: var(--font-sans);
      color: var(--color-ink);
-     background-color: var(--color-accent);
+     background-color: var(--color-canvas);
      scroll-behavior: smooth;
    }
  
@@ -49,4 +63,24 @@
      -webkit-font-smoothing: antialiased;
      -moz-osx-font-smoothing: grayscale;
    }
+ 
+   /* Estado inicial de elementos animados con GSAP — evita flash sin JS  */
+   [data-anim] {
+     opacity: 0;
+   }
+ 
+   /* Si JS está desactivado o el usuario prefiere reducir movimiento, mostrarlos */
+   @media (prefers-reduced-motion: reduce) {
+     [data-anim] {
+       opacity: 1 !important;
+       transform: none !important;
+     }
+   }
+ }
+ 
+ /* ------------------------------------------------------------------
+  * Utilidades de proyecto
+  * ------------------------------------------------------------------ */
+ @utility text-balance {
+   text-wrap: balance;
  }
