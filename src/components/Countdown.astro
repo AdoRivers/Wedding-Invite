@@ -16,7 +16,7 @@ import { event } from "../config/event.js";
     </h2>
 
     <div
-      class="mt-8 grid grid-cols-3 gap-4 sm:gap-8"
+      class="mt-8 grid grid-cols-4 gap-4 sm:gap-8 font-script"
       data-countdown
       data-target={event.date}
     >
@@ -24,6 +24,7 @@ import { event } from "../config/event.js";
         { key: "days", label: "Days" },
         { key: "hours", label: "Hours" },
         { key: "mins", label: "Mins" },
+        { key: "segs", label: "Segs"}
       ].map(({ key, label }) => (
         <div class="flex flex-col items-center border-b border-leaf-300 pb-3">
           <span
@@ -48,6 +49,7 @@ import { event } from "../config/event.js";
       days: root.querySelector<HTMLElement>('[data-unit="days"]'),
       hours: root.querySelector<HTMLElement>('[data-unit="hours"]'),
       mins: root.querySelector<HTMLElement>('[data-unit="mins"]'),
+      segs: root.querySelector<HTMLElement>('[data-unit="segs"]')
     };
 
     const pad = (n: number) => String(Math.max(0, n)).padStart(2, "0");
@@ -61,12 +63,14 @@ import { event } from "../config/event.js";
       const days = Math.floor(diff / 86_400_000);
       const hours = Math.floor((diff % 86_400_000) / 3_600_000);
       const mins = Math.floor((diff % 3_600_000) / 60_000);
+      const segs = Math.floor((diff % 60_000) / 1_000);
       if (units.days) units.days.textContent = pad(days);
       if (units.hours) units.hours.textContent = pad(hours);
       if (units.mins) units.mins.textContent = pad(mins);
+      if (units.segs) units.segs.textContent = pad(segs);
       return true;
     };
 
-    if (tick()) setInterval(tick, 60_000);
+    if (tick()) setInterval(tick, 1_000);
   }
 </script>
