@@ -34,17 +34,22 @@ const titleChars = Array.from(event.title).map((ch) => ({
     class="relative z-10 flex h-full w-full flex-col items-center justify-end px-6 pb-24 text-center md:justify-center md:pb-0"
   >
     <h1
-      id="hero-title"
-      class="font-vibes
-  text-[clamp(3.5rem,9vw,7rem)]
-  leading-none
-  text-white
-  drop-shadow-md
-  max-w-[90vw]
-  px-4"
-      aria-label={event.title}
-      data-hero-title
-    >
+    id="hero-title"
+    class="
+      font-vibes
+      text-[clamp(2.8rem,10vw,7rem)]
+      leading-[0.9]
+      text-white
+      drop-shadow-md
+      max-w-[95vw]
+      px-4
+      text-center
+      text-balance
+      break-words
+    "
+    aria-label={event.title}
+    data-hero-title
+  >
       {
         titleChars.map(({ char, isSpace }) => (
           <span
