@@ -15,10 +15,7 @@ const titleChars = Array.from(event.title).map((ch) => ({
   aria-labelledby="hero-title"
 >
   <!-- Imagen de fondo (con parallax) -->
-  <div
-    class="absolute inset-0 will-change-transform"
-    data-hero-bg
-  >
+  <div class="absolute inset-0 will-change-transform" data-hero-bg>
     <img
       src={event.honoree.portrait}
       alt={`Retrato de ${event.honoree.name}`}
@@ -33,22 +30,32 @@ const titleChars = Array.from(event.title).map((ch) => ({
   <div class="absolute inset-0 hero-vignette" aria-hidden="true"></div>
 
   <!-- Contenido -->
-  <div class="relative z-10 flex h-full w-full flex-col items-center justify-end px-6 pb-24 text-center md:justify-center md:pb-0">
+  <div
+    class="relative z-10 flex h-full w-full flex-col items-center justify-end px-6 pb-24 text-center md:justify-center md:pb-0"
+  >
     <h1
       id="hero-title"
-      class="font-vibes text-6xl italic leading-none text-white drop-shadow-md sm:text-6xl md:text-7xl"
+      class="font-vibes
+  text-[clamp(3.5rem,9vw,7rem)]
+  leading-none
+  text-white
+  drop-shadow-md
+  max-w-[90vw]
+  px-4"
       aria-label={event.title}
       data-hero-title
     >
-      {titleChars.map(({ char, isSpace }) => (
-        <span
-          data-split-char
-          aria-hidden="true"
-          class="inline-block"
-          style={isSpace ? "width: 0.3em;" : undefined}
-          set:html={isSpace ? "&nbsp;" : char}
-        />
-      ))}
+      {
+        titleChars.map(({ char, isSpace }) => (
+          <span
+            data-split-char
+            aria-hidden="true"
+            class="inline-block"
+            style={isSpace ? "width: 0.3em;" : undefined}
+            set:html={isSpace ? "&nbsp;" : char}
+          />
+        ))
+      }
     </h1>
 
     <p
@@ -103,14 +110,21 @@ const titleChars = Array.from(event.title).map((ch) => ({
 </section>
 
 <script>
-  import { gsap, ScrollTrigger, prefersReducedMotion, EASE } from "../lib/gsap.client.js";
+  import {
+    gsap,
+    ScrollTrigger,
+    prefersReducedMotion,
+    EASE,
+  } from "../lib/gsap.client.js";
 
   const hero = document.getElementById("hero");
   if (hero) {
     const bg = hero.querySelector<HTMLElement>("[data-hero-bg]");
     const chars = hero.querySelectorAll<HTMLElement>("[data-split-char]");
     const subtitle = hero.querySelector<HTMLElement>("[data-hero-subtitle]");
-    const pills = hero.querySelectorAll<HTMLElement>("[data-hero-pills] [data-anim]");
+    const pills = hero.querySelectorAll<HTMLElement>(
+      "[data-hero-pills] [data-anim]",
+    );
     const chevron = hero.querySelector<HTMLElement>("[data-hero-chevron]");
 
     if (prefersReducedMotion) {
