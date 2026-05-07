@@ -7,31 +7,31 @@ import { event } from "../config/event.js";
   class="px-6 py-16 sm:py-20"
   aria-labelledby="countdown-title"
 >
-  <div class="mx-auto max-w-md text-center">
+  <div class="mx-auto max-w-md text-center" data-anim data-cd-block>
     <h2
       id="countdown-title"
       class="text-xs font-medium uppercase tracking-[0.3em] text-leaf-700 sm:text-sm"
     >
-      Countdown to party
+      Tiempo restante para la fiesta
     </h2>
 
     <div
-      class="mt-8 grid grid-cols-4 gap-4 sm:gap-8 font-script"
+      class="font-script mt-8 grid grid-cols-4 gap-3 sm:gap-6"
       data-countdown
       data-target={event.date}
     >
       {[
-        { key: "days", label: "Days" },
-        { key: "hours", label: "Hours" },
-        { key: "mins", label: "Mins" },
-        { key: "segs", label: "Segs"}
+        { key: "days", label: "Días" },
+        { key: "hours", label: "Horas" },
+        { key: "mins", label: "Minutos" },
+        { key: "segs", label: "Segundos" },
       ].map(({ key, label }) => (
         <div class="flex flex-col items-center border-b border-leaf-300 pb-3">
           <span
             data-unit={key}
             class="text-3xl font-bold tabular-nums text-leaf-800 sm:text-4xl"
           >00</span>
-          <span class="mt-2 text-[0.65rem] uppercase tracking-widest text-muted sm:text-xs">
+          <span class="mt-2 text-[0.6rem] uppercase tracking-widest text-muted sm:text-xs">
             {label}
           </span>
         </div>
@@ -41,36 +41,102 @@ import { event } from "../config/event.js";
 </section>
 
 <script>
-  // JS mínimo y autocontenido — solo cuenta regresiva.
+  import { gsap, ScrollTrigger, prefersReducedMotion, EASE } from "../lib/gsap.client.js";
+
   const root = document.querySelector<HTMLElement>("[data-countdown]");
-  if (root?.dataset.target) {
+  const block = document.querySelector<HTMLElement>("[data-cd-block]");
+  if (!root || !block || !root.dataset.target) {
+    /* nada que hacer */
+  } else {
     const target = new Date(root.dataset.target).getTime();
     const units = {
       days: root.querySelector<HTMLElement>('[data-unit="days"]'),
       hours: root.querySelector<HTMLElement>('[data-unit="hours"]'),
       mins: root.querySelector<HTMLElement>('[data-unit="mins"]'),
-      segs: root.querySelector<HTMLElement>('[data-unit="segs"]')
+      segs: root.querySelector<HTMLElement>('[data-unit="segs"]'),
     };
 
     const pad = (n: number) => String(Math.max(0, n)).padStart(2, "0");
 
-    const tick = () => {
+    // -------- Lectura del estado actual --------
+    const compute = () => {
       const diff = target - Date.now();
-      if (diff <= 0) {
-        Object.values(units).forEach((el) => el && (el.textContent = "00"));
-        return false;
-      }
-      const days = Math.floor(diff / 86_400_000);
-      const hours = Math.floor((diff % 86_400_000) / 3_600_000);
-      const mins = Math.floor((diff % 3_600_000) / 60_000);
-      const segs = Math.floor((diff % 60_000) / 1_000);
-      if (units.days) units.days.textContent = pad(days);
-      if (units.hours) units.hours.textContent = pad(hours);
-      if (units.mins) units.mins.textContent = pad(mins);
-      if (units.segs) units.segs.textContent = pad(segs);
-      return true;
+      if (diff <= 0) return { days: 0, hours: 0, mins: 0, segs: 0, ended: true };
+      return {
+        days: Math.floor(diff / 86_400_000),
+        hours: Math.floor((diff % 86_400_000) / 3_600_000),
+        mins: Math.floor((diff % 3_600_000) / 60_000),
+        segs: Math.floor((diff % 60_000) / 1_000),
+        ended: false,
+      };
     };
 
-    if (tick()) setInterval(tick, 1_000);
+    // -------- Tick periódico (real) --------
+    let lastSegs = -1;
+    const writeAll = (s: ReturnType<typeof compute>) => {
+      if (units.days) units.days.textContent = pad(s.days);
+      if (units.hours) units.hours.textContent = pad(s.hours);
+      if (units.mins) units.mins.textContent = pad(s.mins);
+      if (units.segs) units.segs.textContent = pad(s.segs);
+      // Pulse al cambiar el segundo (saltable si reduced motion)
+      if (units.segs && !prefersReducedMotion && s.segs !== lastSegs) {
+        gsap.fromTo(
+          units.segs,
+          { scale: 1.18, color: "#386b50" },
+          { scale: 1, color: "#264634", duration: 0.45, ease: EASE.expoOut }
+        );
+      }
+      lastSegs = s.segs;
+    };
+
+    const tickReal = () => writeAll(compute());
+
+    // -------- Animación de entrada: cuenta desde 0 --------
+    const startCounter = () => {
+      const final = compute();
+      const obj = { days: 0, hours: 0, mins: 0, segs: 0 };
+
+      gsap.to(obj, {
+        days: final.days,
+        hours: final.hours,
+        mins: final.mins,
+        segs: final.segs,
+        duration: 1.6,
+        ease: EASE.expoOut,
+        onUpdate: () => {
+          if (units.days) units.days.textContent = pad(Math.round(obj.days));
+          if (units.hours) units.hours.textContent = pad(Math.round(obj.hours));
+          if (units.mins) units.mins.textContent = pad(Math.round(obj.mins));
+          if (units.segs) units.segs.textContent = pad(Math.round(obj.segs));
+        },
+        onComplete: () => {
+          // A partir de aquí, tick de 1s con pulso del segundero
+          setInterval(tickReal, 1000);
+        },
+      });
+    };
+
+    if (prefersReducedMotion) {
+      writeAll(compute());
+      setInterval(tickReal, 1000);
+      gsap.set(block, { opacity: 1 });
+    } else {
+      // Fade-up del bloque + counter al entrar a viewport
+      gsap.fromTo(
+        block,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: block,
+            start: "top 85%",
+            once: true,
+            onEnter: startCounter,
+          },
+        }
+      );
+    }
   }
 </script>

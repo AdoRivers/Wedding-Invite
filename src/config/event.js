@@ -11,16 +11,15 @@ export const event = {
   },
 
   title: "Karen's Birthday",
-  subtitle: "Está cumpliendo años!!!",
+  subtitle: "Está cumpliendo años",
 
   // Fecha real del evento (ISO local). Alimenta el countdown.
-  date: "2026-05-22T10:00:00",
+  date: "2026-05-22T18:00:00",
   dateLabel: { day: "22", month: "Mayo", short: "MAYO 22" },
   timeLabel: "06:00 PM",
 
   // Tarjetas de información: temática + dresscode
   info: [
-
     {
       key: "dresscode",
       label: "Dresscode",
@@ -31,31 +30,35 @@ export const event = {
     },
   ],
 
-  // Galería: imágenes que entran con fade + stagger en scroll
+  // Galería
   gallery: [
     { src: "/images/Karen1.jpeg", alt: "Karen 1" },
     { src: "/images/Karen2.jpeg", alt: "Karen 2" },
     { src: "/images/Karen3.jpeg", alt: "Karen 3" },
-    //{ src: "/images/gallery-4.webp", alt: "Chloe Photo 4" },
   ],
 
-  // Highlight verde — atracción especial del evento
+  // Highlight — atracción especial del evento (con imagen)
   highlight: {
     eyebrow: "Presentación estelar",
     title: "Grupo Advertencia",
-    description: "Grupo Norteño, Originario de Escobedo Nuevo León México.",
+    description:
+      "Grupo Norteño, originario de Escobedo Nuevo León, México.",
+    // Placeholder hasta que subas la foto del grupo:
+    // reemplaza por "/images/grupo-advertencia.jpg" cuando la tengas.
+    image: "/images/Karen2.jpeg",
+    imageAlt: "Grupo Advertencia en concierto",
   },
 
   location: {
-    name: "lorem ipsum",
+    name: "Salón de eventos",
     address: "PRPQ+JWC Cdad. Apodaca, Nuevo León",
     mapsQuery: "PRPQ+JWC Cdad. Apodaca, Nuevo León",
   },
 
   rsvp: {
-    url: "mailto:rsvp@example.com?subject=RSVP%20Chloe%27s%20Birthday",
+    url: "mailto:rsvp@example.com?subject=RSVP%20Karen%27s%20Birthday",
     label: "Confirmar Asistencia",
   },
 
-  footer: "No sé que poner aqui",
+  footer: "Karen is one",
 };

@@ -20,7 +20,7 @@ const { title = event.title } = Astro.props;
     <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-canvas text-ink">
+  <body class="min-h-screen overflow-x-hidden bg-canvas text-ink">
     <slot />
   </body>
 </html>

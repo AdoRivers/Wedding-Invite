@@ -2,20 +2,54 @@
 import { event } from "../config/event.js";
 ---
 
-<footer class="flex flex-col items-center px-6 pb-12 pt-6 text-leaf-700/70">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="22"
-    height="22"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"></path>
-  </svg>
-  <p class="mt-2 text-[0.65rem] uppercase tracking-[0.3em]">{event.footer}</p>
+<footer
+  class="flex flex-col items-center px-6 pb-14 pt-8 text-leaf-700/70"
+  data-footer
+>
+  <span data-footer-heart aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"></path>
+    </svg>
+  </span>
+  <p class="mt-3 font-script text-xl italic text-leaf-700">
+    {event.footer}
+  </p>
 </footer>
+
+<script>
+  import { gsap, prefersReducedMotion } from "../lib/gsap.client.js";
+
+  const footer = document.querySelector<HTMLElement>("[data-footer]");
+  const heart = document.querySelector<HTMLElement>("[data-footer-heart]");
+  if (footer && !prefersReducedMotion) {
+    gsap.fromTo(
+      footer,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        scrollTrigger: { trigger: footer, start: "top 92%", once: true },
+      }
+    );
+    if (heart) {
+      gsap.to(heart, {
+        scale: 1.12,
+        duration: 1.1,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+    }
+  }
+</script>

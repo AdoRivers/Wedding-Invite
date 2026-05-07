@@ -1,45 +1,78 @@
 ---
 import { event } from "../config/event.js";
+
+// Pre-procesar el título en chars con preservación de espacios.
+// Cada letra recibe un <span data-split-char> que GSAP animará individualmente.
+const titleChars = Array.from(event.title).map((ch) => ({
+  char: ch,
+  isSpace: ch === " ",
+}));
 ---
 
 <section
+  id="hero"
   class="relative flex h-svh min-h-[640px] w-full items-center justify-center overflow-hidden"
   aria-labelledby="hero-title"
 >
-  <!-- Imagen de fondo -->
-  <img
-    src={event.honoree.portrait}
-    alt={`Retrato de ${event.honoree.name}`}
-    class="absolute inset-0 h-full w-full object-cover object-center"
-    loading="eager"
-    fetchpriority="high"
-    decoding="async"
-  />
-
-  <!-- Degradado: oscurece arriba/abajo, blanco al final para fundir con el resto -->
+  <!-- Imagen de fondo (con parallax) -->
   <div
-    class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-canvas"
-    aria-hidden="true"
-  ></div>
+    class="absolute inset-0 will-change-transform"
+    data-hero-bg
+  >
+    <img
+      src={event.honoree.portrait}
+      alt={`Retrato de ${event.honoree.name}`}
+      class="absolute inset-0 h-[115%] w-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+
+  <!-- Vignette + degradado al fondo -->
+  <div class="absolute inset-0 hero-vignette" aria-hidden="true"></div>
 
   <!-- Contenido -->
-  <div class="relative z-10 flex min-h-screen flex-col items-center justify-end px-6 pb-24 text-center md:justify-center md:pb-0"">
+  <div class="relative z-10 flex h-full w-full flex-col items-center justify-end px-6 pb-24 text-center md:justify-center md:pb-0">
     <h1
       id="hero-title"
-      class="font-vibes text-6xl italic font-medium leading-none text-white drop-shadow-md sm:text-7xl md:text-8xl"
+      class="font-vibes text-6xl italic leading-none text-white drop-shadow-md sm:text-7xl md:text-8xl"
+      aria-label={event.title}
+      data-hero-title
     >
-      {event.title}
+      {titleChars.map(({ char, isSpace }) => (
+        <span
+          data-split-char
+          aria-hidden="true"
+          class="inline-block"
+          style={isSpace ? "width: 0.3em;" : undefined}
+          set:html={isSpace ? "&nbsp;" : char}
+        />
+      ))}
     </h1>
 
-    <p class="mt-3 text-xs uppercase tracking-[0.4em] text-white/90 sm:text-sm">
+    <p
+      class="mt-4 text-xs uppercase tracking-[0.4em] text-white/90 sm:text-sm"
+      data-anim
+      data-hero-subtitle
+    >
       {event.subtitle}
     </p>
 
-    <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row">
-      <span class="rounded-full bg-leaf-300 px-6 py-2 text-xs font-semibold uppercase tracking-widest text-leaf-800 shadow-soft">
+    <div
+      class="mt-8 flex flex-col items-center gap-3 sm:flex-row"
+      data-hero-pills
+    >
+      <span
+        class="rounded-full bg-leaf-300/90 px-6 py-2 text-xs font-semibold uppercase tracking-widest text-leaf-800 shadow-soft"
+        data-anim
+      >
         {event.dateLabel.short}
       </span>
-      <span class="rounded-full border border-white/70 bg-white/95 px-6 py-2 text-xs font-semibold uppercase tracking-widest text-leaf-800 shadow-soft">
+      <span
+        class="glass-leaf rounded-full px-6 py-2 text-xs font-semibold uppercase tracking-widest text-white"
+        data-anim
+      >
         {event.timeLabel}
       </span>
     </div>
@@ -50,6 +83,8 @@ import { event } from "../config/event.js";
     href="#countdown"
     aria-label="Ir al contenido"
     class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-white/80 transition hover:text-white"
+    data-anim
+    data-hero-chevron
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -61,9 +96,57 @@ import { event } from "../config/event.js";
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="animate-bounce"
     >
       <polyline points="6 9 12 15 18 9"></polyline>
     </svg>
   </a>
 </section>
+
+<script>
+  import { gsap, ScrollTrigger, prefersReducedMotion, EASE } from "../lib/gsap.client.js";
+
+  const hero = document.getElementById("hero");
+  if (hero) {
+    const bg = hero.querySelector<HTMLElement>("[data-hero-bg]");
+    const chars = hero.querySelectorAll<HTMLElement>("[data-split-char]");
+    const subtitle = hero.querySelector<HTMLElement>("[data-hero-subtitle]");
+    const pills = hero.querySelectorAll<HTMLElement>("[data-hero-pills] [data-anim]");
+    const chevron = hero.querySelector<HTMLElement>("[data-hero-chevron]");
+
+    if (prefersReducedMotion) {
+      // Mostrar todo de inmediato sin animar
+      gsap.set([chars, subtitle, pills, chevron], { opacity: 1, y: 0 });
+    } else {
+      // ---------- Reveal letra por letra ----------
+      gsap.set(chars, { opacity: 0, y: 30, rotateX: -45 });
+      gsap.set([subtitle, pills, chevron], { opacity: 0, y: 20 });
+
+      const tl = gsap.timeline({ delay: 0.15 });
+      tl.to(chars, {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 0.9,
+        ease: EASE.expoOut,
+        stagger: 0.045,
+      })
+        .to(subtitle, { opacity: 1, y: 0, duration: 0.7 }, "-=0.4")
+        .to(pills, { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 }, "-=0.4")
+        .to(chevron, { opacity: 1, y: 0, duration: 0.6 }, "-=0.3");
+
+      // ---------- Parallax de la imagen ----------
+      if (bg) {
+        gsap.to(bg, {
+          yPercent: 18,
+          ease: "none",
+          scrollTrigger: {
+            trigger: hero,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
+    }
+  }
+</script>

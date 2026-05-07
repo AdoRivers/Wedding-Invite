@@ -1,33 +1,124 @@
 ---
 import { event } from "../config/event.js";
 
-const { eyebrow, title, description } = event.highlight;
+const { eyebrow, title, description, image, imageAlt } = event.highlight;
 ---
 
-<section class="px-6 py-8" aria-labelledby="highlight-title">
+<section
+  class="px-6 py-12 sm:py-16"
+  aria-labelledby="highlight-title"
+  data-highlight
+>
   <div class="mx-auto max-w-md">
-    <article class="relative overflow-hidden rounded-card bg-leaf-700 px-6 py-8 text-center text-white shadow-card sm:px-8">
-      <!-- Icono musical decorativo -->
-      <span class="absolute right-5 top-5 text-leaf-300/70" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 18V5l12-2v13"></path>
-          <circle cx="6" cy="18" r="3"></circle>
-          <circle cx="18" cy="16" r="3"></circle>
-        </svg>
-      </span>
-
-      <p class="text-[0.65rem] uppercase tracking-[0.3em] text-leaf-200">
-        {eyebrow}
-      </p>
-      <h2
-        id="highlight-title"
-        class="mt-2 font-script text-3xl italic font-medium sm:text-4xl"
+    <!-- Wrapper relativo para superponer la card sobre la imagen en desktop -->
+    <div class="relative">
+      <!-- Imagen con parallax + overlay decorativo -->
+      <figure
+        class="relative overflow-hidden rounded-card-lg shadow-card"
+        data-anim
+        data-highlight-image-wrap
       >
-        {title}
-      </h2>
-      <p class="mx-auto mt-3 max-w-xs text-sm text-leaf-100/90 text-balance">
-        {description}
-      </p>
-    </article>
+        <div class="aspect-[4/3] overflow-hidden">
+          <img
+            src={image}
+            alt={imageAlt}
+            loading="lazy"
+            decoding="async"
+            class="h-full w-full object-cover will-change-transform"
+            data-highlight-image
+          />
+        </div>
+        <!-- Velo verde para coherencia cromática -->
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-leaf-900/50 via-leaf-700/10 to-transparent"
+          aria-hidden="true"
+        ></div>
+        <!-- Mini badge esquina superior izquierda -->
+        <div class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-[0.6rem] font-semibold uppercase tracking-widest text-leaf-700 shadow-soft">
+          <span class="grid size-4 place-items-center" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </span>
+          En vivo
+        </div>
+      </figure>
+
+      <!-- Card verde con info — superpuesta inferior en sm+, debajo en mobile -->
+      <article
+        class="relative -mt-10 mx-3 overflow-hidden rounded-card bg-leaf-700 px-6 py-7 text-center text-white shadow-glow sm:mx-6"
+        data-anim
+        data-highlight-card
+      >
+        <!-- Icono musical decorativo -->
+        <span
+          class="absolute right-5 top-5 text-leaf-300/70"
+          aria-hidden="true"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+          </svg>
+        </span>
+
+        <p class="text-[0.65rem] uppercase tracking-[0.3em] text-leaf-200">
+          {eyebrow}
+        </p>
+        <h2
+          id="highlight-title"
+          class="mt-2 font-script text-3xl italic font-medium sm:text-4xl"
+        >
+          {title}
+        </h2>
+        <p class="mx-auto mt-3 max-w-xs text-sm text-leaf-100/90 text-balance">
+          {description}
+        </p>
+      </article>
+    </div>
   </div>
 </section>
+
+<script>
+  import { gsap, prefersReducedMotion, EASE } from "../lib/gsap.client.js";
+
+  const section = document.querySelector<HTMLElement>("[data-highlight]");
+  if (section) {
+    const imageWrap = section.querySelector<HTMLElement>("[data-highlight-image-wrap]");
+    const image = section.querySelector<HTMLImageElement>("[data-highlight-image]");
+    const card = section.querySelector<HTMLElement>("[data-highlight-card]");
+
+    if (prefersReducedMotion) {
+      gsap.set([imageWrap, card], { opacity: 1 });
+    } else {
+      // Entrada en cascada: imagen primero, card después con leve overshoot
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: section, start: "top 80%", once: true },
+      });
+      tl.fromTo(
+        imageWrap,
+        { opacity: 0, y: 40, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 1, ease: EASE.expoOut }
+      ).fromTo(
+        card,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.85, ease: EASE.expoOut },
+        "-=0.5"
+      );
+
+      // Parallax interno: la imagen se desplaza ligeramente al hacer scroll
+      if (image) {
+        gsap.to(image, {
+          yPercent: -8,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
+    }
+  }
+</script>

@@ -1,10 +1,17 @@
 ---
 import { event } from "../config/event.js";
 import InfoCard from "./InfoCard.astro";
+
+// Si solo hay una card, ocupa una columna; si son 2+, dos columnas en sm.
+const cols = event.info.length > 1 ? "sm:grid-cols-2" : "sm:grid-cols-1 sm:max-w-sm sm:mx-auto";
 ---
 
-<section class="px-6 py-8" aria-label="Detalles del evento">
-  <div class="mx-auto grid max-w-md grid-cols-1 gap-4 sm:grid-cols-1">
+<section
+  class="px-6 py-8"
+  aria-label="Detalles del evento"
+  data-info-section
+>
+  <div class={`mx-auto grid max-w-md grid-cols-1 gap-5 ${cols}`}>
     {event.info.map((card, i) => (
       <InfoCard
         id={`infocard-${card.key}`}
@@ -18,3 +25,34 @@ import InfoCard from "./InfoCard.astro";
     ))}
   </div>
 </section>
+
+<script>
+  import { gsap, prefersReducedMotion, EASE } from "../lib/gsap.client.js";
+
+  const section = document.querySelector<HTMLElement>("[data-info-section]");
+  if (section) {
+    const cards = section.querySelectorAll<HTMLElement>("[data-info-card]");
+
+    if (prefersReducedMotion) {
+      gsap.set(cards, { opacity: 1 });
+    } else {
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 40, scale: 0.96 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.9,
+          ease: EASE.expoOut,
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
+    }
+  }
+</script>
