@@ -7,25 +7,25 @@ export const event = {
   honoree: {
     name: "Karen",
     age: 1,
-    portrait: "/images/Cover.jpeg",
+    portrait: "/images/KarCover.webp",
   },
 
   title: "Karen's Birthday",
   subtitle: "Está cumpliendo años",
 
   // Fecha real del evento (ISO local). Alimenta el countdown.
-  date: "2026-05-22T18:00:00",
+  date: "2026-05-22T20:00:00",
   dateLabel: { day: "22", month: "Mayo", short: "MAYO 22" },
-  timeLabel: "06:00 PM",
+  timeLabel: "08:00 PM",
 
   // Tarjetas de información: temática + dresscode
   info: [
     {
       key: "dresscode",
       label: "Dresscode",
-      title: "Anotha perro asustado",
-      description: "Alex no muestres esto, es una prueba.",
-      image: "/images/perro-asustado-perro.gif",
+      title: "Black & White",
+      description: "lorem",
+      image: "/images/Dresscode.jpeg",
       icon: "hanger",
     },
   ],
@@ -50,14 +50,14 @@ export const event = {
   },
 
   location: {
-    name: "Salón de eventos",
-    address: "PRPQ+JWC Cdad. Apodaca, Nuevo León",
-    mapsQuery: "PRPQ+JWC Cdad. Apodaca, Nuevo León",
+    name: "Huisache 331",
+    address: "Huisache 331, Rincón de Huinala, 66644 Cdad. Apodaca, N.L.",
+    mapsQuery: "Huisache 331, Rincón de Huinala, 66644 Cdad. Apodaca, N.L.",
   },
 
   rsvp: {
     url: "mailto:rsvp@example.com?subject=RSVP%20Karen%27s%20Birthday",
-    label: "Confirmar Asistencia",
+    label: "Guardar en Calendario",
   },
 
   footer: "Karen is one",
