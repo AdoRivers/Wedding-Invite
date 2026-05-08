@@ -1,257 +1,196 @@
 ---
 import { event } from "../config/event.js";
+import "../styles/Hero.css";
 ---
 
 <section
   id="hero"
-  class="hero-root"
+  class="relative flex min-h-svh w-full flex-col overflow-visible bg-white"
   aria-labelledby="hero-title"
 >
 
-  <!-- ══════════════════════════════════════
-       1. GUIRNALDA — full-width top bar
-  ═══════════════════════════════════════ -->
-  <div class="garland" aria-hidden="true">
-    <!-- Hilo curvo -->
-    <svg class="garland__wire" viewBox="0 0 390 56" preserveAspectRatio="none">
+  <!-- ══════════════════ GUIRNALDA ══════════════════ -->
+  <div class="garland relative h-16 w-full shrink-0 overflow-visible sm:h-20" aria-hidden="true">
+    <svg class="absolute inset-0 h-full w-full" viewBox="0 0 390 56" preserveAspectRatio="none">
       <path d="M-10 8 Q55 38 120 12 Q195 -8 270 16 Q330 36 400 10"
         fill="none" stroke="#c0c0c8" stroke-width="1" opacity="0.6"/>
     </svg>
-
-    <!-- item: estrella — posiciones fijas en vw para mobile 390 base -->
-    <div class="g-item" style="--gx:3%; --gy:0px;"   data-sw="a"><svg viewBox="0 0 80 80" width="46" height="46"><use href="#s5"/></svg></div>
-    <div class="g-item" style="--gx:13%; --gy:14px;" data-sw="b"><svg viewBox="0 0 100 118" width="40" height="48"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
-    <div class="g-item" style="--gx:25%; --gy:2px;"  data-sw="a"><svg viewBox="0 0 80 80" width="42" height="42"><use href="#s5"/></svg></div>
-    <div class="g-item" style="--gx:37%; --gy:10px;" data-sw="c"><svg viewBox="0 0 100 118" width="38" height="46"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
-    <div class="g-item" style="--gx:49%; --gy:0px;"  data-sw="b"><svg viewBox="0 0 80 80" width="44" height="44"><use href="#s5"/></svg></div>
-    <div class="g-item" style="--gx:61%; --gy:12px;" data-sw="a"><svg viewBox="0 0 100 118" width="36" height="44"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
-    <div class="g-item" style="--gx:73%; --gy:2px;"  data-sw="c"><svg viewBox="0 0 80 80" width="40" height="40"><use href="#s5"/></svg></div>
-    <div class="g-item" style="--gx:83%; --gy:8px;"  data-sw="b"><svg viewBox="0 0 100 118" width="36" height="44"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
-    <div class="g-item" style="--gx:93%; --gy:0px;"  data-sw="a"><svg viewBox="0 0 80 80" width="38" height="38"><use href="#s5"/></svg></div>
+    <!-- Estrellas + disco balls: posición via inline style (valores únicos por ítem) -->
+    <div class="g-item absolute origin-top" style="left:3%;  top:0px;"   data-sw="a"><svg viewBox="0 0 80 80" width="46" height="46"><use href="#s5"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:13%; top:14px;"  data-sw="b"><svg viewBox="0 0 100 118" width="40" height="48"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:25%; top:2px;"   data-sw="a"><svg viewBox="0 0 80 80" width="42" height="42"><use href="#s5"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:37%; top:10px;"  data-sw="c"><svg viewBox="0 0 100 118" width="38" height="46"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:49%; top:0px;"   data-sw="b"><svg viewBox="0 0 80 80" width="44" height="44"><use href="#s5"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:61%; top:12px;"  data-sw="a"><svg viewBox="0 0 100 118" width="36" height="44"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:73%; top:2px;"   data-sw="c"><svg viewBox="0 0 80 80" width="40" height="40"><use href="#s5"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:83%; top:8px;"   data-sw="b"><svg viewBox="0 0 100 118" width="36" height="44"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:93%; top:0px;"   data-sw="a"><svg viewBox="0 0 80 80" width="38" height="38"><use href="#s5"/></svg></div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       2. COLLAGE STAGE — foto centrada + decos absolutos
-  ═══════════════════════════════════════ -->
-  <div class="stage">
+  <!-- ══════════════════ STAGE ══════════════════ -->
+  <div class="relative flex min-h-80 flex-1 items-end justify-center px-4">
 
-    <!-- ── FOTO — bloque central ── -->
-    <div class="portrait" data-anim="portrait">
+    <!-- Foto central -->
+    <div class="portrait relative z-10 w-[72vw] max-w-[300px] shrink-0 overflow-visible sm:max-w-[340px] md:w-[38vw] md:max-w-[400px]">
       <img
         src={event.honoree.portrait}
         alt={`Retrato de ${event.honoree.name}`}
-        class="portrait__img"
+        class="block h-auto w-full object-cover object-top"
         loading="eager"
         fetchpriority="high"
         decoding="async"
       />
-
     </div>
 
-    <!-- ── CÁMARA — izquierda media ── -->
-    <div class="deco deco--camera" data-anim="deco" aria-hidden="true">
-      <svg viewBox="0 0 130 96" xmlns="http://www.w3.org/2000/svg">
+    <!-- Cámara — izquierda media -->
+    <div class="deco pointer-events-none absolute top-[18%] left-0 z-5 w-[120px] -rotate-[8deg] drop-shadow-md sm:left-[3%] sm:top-[15%] sm:w-[140px] md:left-[6%] md:top-[12%] md:w-[160px]" aria-hidden="true">
+      <svg viewBox="0 0 130 96" class="w-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="cb" x1="0%" y1="0%" x2="80%" y2="100%">
-            <stop offset="0%" stop-color="#d8d8d8"/>
-            <stop offset="100%" stop-color="#909090"/>
+            <stop offset="0%" stop-color="#d8d8d8"/><stop offset="100%" stop-color="#909090"/>
           </linearGradient>
           <radialGradient id="cl" cx="38%" cy="33%" r="62%">
-            <stop offset="0%" stop-color="#444"/>
-            <stop offset="55%" stop-color="#111"/>
-            <stop offset="100%" stop-color="#000"/>
+            <stop offset="0%" stop-color="#444"/><stop offset="55%" stop-color="#111"/><stop offset="100%" stop-color="#000"/>
           </radialGradient>
         </defs>
-        <!-- Cuerpo -->
         <rect x="2" y="22" width="126" height="70" rx="9" fill="url(#cb)" stroke="#aaa" stroke-width="0.8"/>
-        <!-- Bump top -->
         <rect x="42" y="11" width="38" height="15" rx="5" fill="#ccc" stroke="#aaa" stroke-width="0.7"/>
-        <!-- Botón shutter -->
         <circle cx="70" cy="13" r="4.5" fill="#e88"/>
-        <!-- Lente anillos -->
         <circle cx="46" cy="57" r="25" fill="#9a9a9a" stroke="#808080" stroke-width="0.8"/>
         <circle cx="46" cy="57" r="20" fill="#777"/>
         <circle cx="46" cy="57" r="14" fill="url(#cl)"/>
         <circle cx="46" cy="57" r="8"  fill="#050505"/>
-        <!-- Reflejo lente -->
         <ellipse cx="40" cy="51" rx="4.5" ry="2.8" fill="rgba(255,255,255,0.2)" transform="rotate(-22 40 51)"/>
-        <!-- Viewfinder -->
         <rect x="84" y="31" width="26" height="18" rx="4" fill="#666" stroke="#555" stroke-width="0.7"/>
         <rect x="86" y="33" width="22" height="14" rx="2" fill="#8cd" opacity="0.2"/>
-        <!-- Flash -->
         <rect x="84" y="56" width="30" height="13" rx="4" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
-        <!-- Canon text -->
         <text x="84" y="51" font-family="sans-serif" font-size="7" fill="#555" font-weight="bold" letter-spacing="0.5">Canon</text>
-        <!-- Acento rosa -->
         <line x1="6" y1="84" x2="24" y2="66" stroke="#e879b2" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
         <line x1="12" y1="90" x2="28" y2="74" stroke="#e879b2" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
-        <!-- Textura halftone -->
-        <circle cx="106" cy="76" r="2" fill="rgba(0,0,0,0.07)"/>
-        <circle cx="114" cy="68" r="1.5" fill="rgba(0,0,0,0.05)"/>
-        <circle cx="118" cy="80" r="1.5" fill="rgba(0,0,0,0.05)"/>
       </svg>
     </div>
 
-    <!-- ── ESTRELLAS SPARKLE 4P — izquierda inferior ── -->
-    <div class="deco deco--sparkle" data-anim="deco" aria-hidden="true">
-      <svg viewBox="0 0 140 130" xmlns="http://www.w3.org/2000/svg">
+    <!-- Sparkle estrellas 4p — izquierda inferior -->
+    <div class="deco pointer-events-none absolute bottom-[16%] left-0 z-5 w-[110px] drop-shadow-sm sm:left-[3%] sm:bottom-[18%] sm:w-[130px] md:left-[5%] md:bottom-[20%] md:w-[150px]" aria-hidden="true">
+      <svg viewBox="0 0 140 130" class="w-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="sp-s" cx="28%" cy="22%" r="74%">
-            <stop offset="0%" stop-color="#f0f0f2"/>
-            <stop offset="42%" stop-color="#b0b0bc"/>
-            <stop offset="100%" stop-color="#505060"/>
+            <stop offset="0%" stop-color="#f0f0f2"/><stop offset="42%" stop-color="#b0b0bc"/><stop offset="100%" stop-color="#505060"/>
           </radialGradient>
           <radialGradient id="sp-p" cx="28%" cy="22%" r="74%">
-            <stop offset="0%" stop-color="#fce4f0"/>
-            <stop offset="44%" stop-color="#e060a8"/>
-            <stop offset="100%" stop-color="#8a1060"/>
+            <stop offset="0%" stop-color="#fce4f0"/><stop offset="44%" stop-color="#e060a8"/><stop offset="100%" stop-color="#8a1060"/>
           </radialGradient>
         </defs>
-        <!-- Grande plateada -->
-        <path d="M38 0C38 20 20 38 0 38C20 38 38 56 38 76C38 56 56 38 76 38C56 38 38 20 38 0Z"
-          fill="url(#sp-s)" stroke="rgba(255,255,255,0.35)" stroke-width="0.7"/>
+        <path d="M38 0C38 20 20 38 0 38C20 38 38 56 38 76C38 56 56 38 76 38C56 38 38 20 38 0Z" fill="url(#sp-s)" stroke="rgba(255,255,255,0.35)" stroke-width="0.7"/>
         <ellipse cx="26" cy="24" rx="7" ry="4" fill="rgba(255,255,255,0.38)" transform="rotate(-28 26 24)"/>
-        <!-- Mediana plateada — desplazada derecha -->
-        <path d="M26 0C26 14 14 26 0 26C14 26 26 38 26 52C26 38 38 26 52 26C38 26 26 14 26 0Z"
-          transform="translate(72,32)"
-          fill="url(#sp-s)" stroke="rgba(255,255,255,0.3)" stroke-width="0.6"/>
-        <!-- Pequeña rosa — debajo izq -->
-        <path d="M20 0C20 11 11 20 0 20C11 20 20 29 20 40C20 29 29 20 40 20C29 20 20 11 20 0Z"
-          transform="translate(22,74)"
-          fill="url(#sp-p)" stroke="rgba(255,255,255,0.28)" stroke-width="0.6"/>
+        <path d="M26 0C26 14 14 26 0 26C14 26 26 38 26 52C26 38 38 26 52 26C38 26 26 14 26 0Z" transform="translate(72,32)" fill="url(#sp-s)" stroke="rgba(255,255,255,0.3)" stroke-width="0.6"/>
+        <path d="M20 0C20 11 11 20 0 20C11 20 20 29 20 40C20 29 29 20 40 20C29 20 20 11 20 0Z" transform="translate(22,74)" fill="url(#sp-p)" stroke="rgba(255,255,255,0.28)" stroke-width="0.6"/>
         <ellipse cx="34" cy="86" rx="4.5" ry="2.5" fill="rgba(255,255,255,0.42)" transform="rotate(-22 34 86)"/>
-        <!-- Mini plateada — debajo der -->
-        <path d="M16 0C16 9 9 16 0 16C9 16 16 23 16 32C16 23 23 16 32 16C23 16 16 9 16 0Z"
-          transform="translate(92,78)"
-          fill="url(#sp-s)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
+        <path d="M16 0C16 9 9 16 0 16C9 16 16 23 16 32C16 23 23 16 32 16C23 16 16 9 16 0Z" transform="translate(92,78)" fill="url(#sp-s)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
       </svg>
     </div>
 
-    <!-- ── GLOBOS — derecha ── -->
-    <div class="deco deco--balloons" data-anim="deco" aria-hidden="true">
-      <svg viewBox="0 0 140 210" xmlns="http://www.w3.org/2000/svg">
+    <!-- Globos — derecha -->
+    <div class="deco pointer-events-none absolute right-0 bottom-[8%] z-5 w-[110px] drop-shadow-sm sm:right-[3%] sm:bottom-[10%] sm:w-[130px] md:right-[5%] md:bottom-[12%] md:w-[150px]" aria-hidden="true">
+      <svg viewBox="0 0 140 210" class="w-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="bp" cx="28%" cy="22%" r="72%">
-            <stop offset="0%" stop-color="#fce4f0"/>
-            <stop offset="48%" stop-color="#e060a8"/>
-            <stop offset="100%" stop-color="#8a1060"/>
+            <stop offset="0%" stop-color="#fce4f0"/><stop offset="48%" stop-color="#e060a8"/><stop offset="100%" stop-color="#8a1060"/>
           </radialGradient>
           <radialGradient id="bs" cx="28%" cy="22%" r="72%">
-            <stop offset="0%" stop-color="#f0f0f2"/>
-            <stop offset="48%" stop-color="#a0a0b0"/>
-            <stop offset="100%" stop-color="#3a3a48"/>
+            <stop offset="0%" stop-color="#f0f0f2"/><stop offset="48%" stop-color="#a0a0b0"/><stop offset="100%" stop-color="#3a3a48"/>
           </radialGradient>
           <radialGradient id="bc" cx="28%" cy="22%" r="72%">
-            <stop offset="0%" stop-color="rgba(255,255,255,0.95)"/>
-            <stop offset="52%" stop-color="rgba(210,210,228,0.75)"/>
-            <stop offset="100%" stop-color="rgba(170,170,195,0.55)"/>
+            <stop offset="0%" stop-color="rgba(255,255,255,0.95)"/><stop offset="52%" stop-color="rgba(210,210,228,0.75)"/><stop offset="100%" stop-color="rgba(170,170,195,0.55)"/>
           </radialGradient>
           <radialGradient id="bsp" cx="28%" cy="22%" r="72%">
-            <stop offset="0%" stop-color="#fce4f0"/>
-            <stop offset="100%" stop-color="#e060a8"/>
+            <stop offset="0%" stop-color="#fce4f0"/><stop offset="100%" stop-color="#e060a8"/>
           </radialGradient>
           <radialGradient id="bss" cx="28%" cy="22%" r="72%">
-            <stop offset="0%" stop-color="#f0f0f2"/>
-            <stop offset="100%" stop-color="#909090"/>
+            <stop offset="0%" stop-color="#f0f0f2"/><stop offset="100%" stop-color="#909090"/>
           </radialGradient>
         </defs>
-
-        <!-- Hijos / strings desde nudo central abajo -->
         <circle cx="70" cy="202" r="3.5" fill="#c0c0c8"/>
-        <path d="M70 202 Q62 175 46 145 Q34 118 42 88"   fill="none" stroke="#c0c0c8" stroke-width="0.9"/>
-        <path d="M70 202 Q78 172 94 148 Q106 125 96 92"  fill="none" stroke="#c0c0c8" stroke-width="0.9"/>
-        <path d="M70 202 Q70 168 70 130 Q70 108 70 80"   fill="none" stroke="#c0c0c8" stroke-width="0.9"/>
-        <path d="M70 202 Q60 170 52 152 Q44 136 52 118"  fill="none" stroke="#c0c0c8" stroke-width="0.9"/>
-        <path d="M70 202 Q80 170 86 152 Q92 136 84 116"  fill="none" stroke="#c0c0c8" stroke-width="0.9"/>
-
-        <!-- Estrella foil ROSA — arriba izq -->
-        <path d="M42 62C42 76 30 88 16 88C30 88 42 100 42 114C42 100 54 88 68 88C54 88 42 76 42 62Z"
-          fill="url(#bsp)" stroke="rgba(255,255,255,0.28)" stroke-width="0.7"/>
+        <path d="M70 202 Q62 175 46 145 Q34 118 42 88"  fill="none" stroke="#c0c0c8" stroke-width="0.9"/>
+        <path d="M70 202 Q78 172 94 148 Q106 125 96 92" fill="none" stroke="#c0c0c8" stroke-width="0.9"/>
+        <path d="M70 202 Q70 168 70 130 Q70 108 70 80"  fill="none" stroke="#c0c0c8" stroke-width="0.9"/>
+        <path d="M70 202 Q60 170 52 152 Q44 136 52 118" fill="none" stroke="#c0c0c8" stroke-width="0.9"/>
+        <path d="M70 202 Q80 170 86 152 Q92 136 84 116" fill="none" stroke="#c0c0c8" stroke-width="0.9"/>
+        <path d="M42 62C42 76 30 88 16 88C30 88 42 100 42 114C42 100 54 88 68 88C54 88 42 76 42 62Z" fill="url(#bsp)" stroke="rgba(255,255,255,0.28)" stroke-width="0.7"/>
         <ellipse cx="33" cy="74" rx="5.5" ry="3" fill="rgba(255,255,255,0.4)" transform="rotate(-24 33 74)"/>
-
-        <!-- Globo ROSA redondo — centro arriba -->
         <ellipse cx="72" cy="62" rx="24" ry="28" fill="url(#bp)"/>
         <ellipse cx="62" cy="51" rx="7" ry="4.5" fill="rgba(255,255,255,0.32)" transform="rotate(-20 62 51)"/>
         <path d="M72 90 Q74 97 71 101" fill="none" stroke="#d060a0" stroke-width="1.4" stroke-linecap="round"/>
-
-        <!-- Globo CONFETTI — derecha -->
         <ellipse cx="98" cy="84" rx="21" ry="25" fill="url(#bc)" stroke="rgba(190,190,210,0.55)" stroke-width="0.8"/>
         <circle cx="90" cy="77" r="2.2" fill="#e060a8" opacity="0.55"/>
         <circle cx="100" cy="85" r="1.6" fill="#9090a8" opacity="0.5"/>
         <circle cx="94"  cy="94" r="1.8" fill="#e060a8" opacity="0.5"/>
         <circle cx="104" cy="74" r="2"   fill="#9090a8" opacity="0.45"/>
-        <circle cx="88"  cy="88" r="1.5" fill="#e060a8" opacity="0.45"/>
         <ellipse cx="89" cy="75" rx="4.5" ry="2.5" fill="rgba(255,255,255,0.38)" transform="rotate(-20 89 75)"/>
         <path d="M98 109 Q100 115 97 119" fill="none" stroke="#b8b8cc" stroke-width="1.1" stroke-linecap="round"/>
-
-        <!-- Estrella foil PLATA — izquierda media -->
-        <path d="M50 112C50 123 41 132 30 132C41 132 50 141 50 152C50 141 59 132 70 132C59 132 50 123 50 112Z"
-          fill="url(#bss)" stroke="rgba(255,255,255,0.28)" stroke-width="0.7"/>
+        <path d="M50 112C50 123 41 132 30 132C41 132 50 141 50 152C50 141 59 132 70 132C59 132 50 123 50 112Z" fill="url(#bss)" stroke="rgba(255,255,255,0.28)" stroke-width="0.7"/>
         <ellipse cx="42" cy="122" rx="5" ry="3" fill="rgba(255,255,255,0.42)" transform="rotate(-24 42 122)"/>
-
-        <!-- Globo ROSA redondo — abajo der -->
         <ellipse cx="88" cy="138" rx="20" ry="23" fill="url(#bp)"/>
         <ellipse cx="79" cy="129" rx="5.5" ry="3.5" fill="rgba(255,255,255,0.32)" transform="rotate(-20 79 129)"/>
         <path d="M88 161 Q90 167 87 170" fill="none" stroke="#d060a0" stroke-width="1.1" stroke-linecap="round"/>
       </svg>
     </div>
 
-    <!-- ── CONFETI decorativo — top right ── -->
-    <div class="deco deco--confetti" data-anim="deco" aria-hidden="true">
-      <svg viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg">
-        <!-- Tiras de confeti -->
+    <!-- Confeti — derecha superior -->
+    <div class="deco pointer-events-none absolute top-[4%] right-[2%] z-5 w-[70px] opacity-85 sm:right-[4%] sm:top-[6%] sm:w-[80px] md:right-[6%] md:top-[5%] md:w-[90px]" aria-hidden="true">
+      <svg viewBox="0 0 80 120" class="w-full" xmlns="http://www.w3.org/2000/svg">
         <rect x="10" y="8"  width="6" height="18" rx="2" fill="#e879b2" opacity="0.7" transform="rotate(15 10 8)"/>
         <rect x="32" y="4"  width="5" height="16" rx="2" fill="#a1a1aa" opacity="0.6" transform="rotate(-10 32 4)"/>
         <rect x="55" y="12" width="6" height="14" rx="2" fill="#e879b2" opacity="0.5" transform="rotate(22 55 12)"/>
         <rect x="20" y="30" width="4" height="20" rx="2" fill="#a1a1aa" opacity="0.55" transform="rotate(-18 20 30)"/>
         <rect x="48" y="28" width="5" height="16" rx="2" fill="#e879b2" opacity="0.6" transform="rotate(8 48 28)"/>
         <rect x="68" y="35" width="4" height="14" rx="2" fill="#a1a1aa" opacity="0.5" transform="rotate(-25 68 35)"/>
-        <rect x="8"  y="55" width="6" height="12" rx="2" fill="#e879b2" opacity="0.45" transform="rotate(12 8 55)"/>
-        <rect x="38" y="52" width="5" height="18" rx="2" fill="#a1a1aa" opacity="0.5" transform="rotate(-14 38 52)"/>
-        <rect x="62" y="58" width="4" height="14" rx="2" fill="#e879b2" opacity="0.55" transform="rotate(20 62 58)"/>
-        <!-- Círculos confeti -->
         <circle cx="25" cy="18" r="4" fill="#e879b2" opacity="0.5"/>
         <circle cx="60" cy="48" r="3" fill="#a1a1aa" opacity="0.45"/>
         <circle cx="15" cy="72" r="3.5" fill="#e879b2" opacity="0.4"/>
-        <circle cx="70" cy="80" r="3" fill="#a1a1aa" opacity="0.4"/>
-        <!-- Estrellas mini -->
-        <path d="M44 76 L46 82 L52 82 L47 86 L49 92 L44 88 L39 92 L41 86 L36 82 L42 82 Z"
-          fill="#e879b2" opacity="0.45" transform="scale(0.55) translate(36,82)"/>
-        <path d="M44 76 L46 82 L52 82 L47 86 L49 92 L44 88 L39 92 L41 86 L36 82 L42 82 Z"
-          fill="#a1a1aa" opacity="0.4" transform="scale(0.45) translate(110,40)"/>
       </svg>
     </div>
 
   </div><!-- /stage -->
 
-  <!-- ══════════════════════════════════════
-       3. BLOQUE TIPOGRÁFICO
-  ═══════════════════════════════════════ -->
-  <div class="text-block">
-    <p class="text-eyebrow" data-anim="text">It&rsquo;s my</p>
-    <h1 id="hero-title" class="text-title" aria-label="Birthday" data-hero-title>
-      {Array.from("BIRTHDAY").map((ch) => (
-        <span data-split-char class="inline-block" aria-hidden="true">{ch}</span>
+  <!-- ══════════════════ TEXTO ══════════════════ -->
+  <div class="relative z-20 px-5 pt-2 pb-5">
+    <p class="mb-0.5 font-sans text-[9px] font-bold tracking-[0.44em] uppercase text-chrome-400">
+      {event.hero.eyebrow}
+    </p>
+    <h1
+      id="hero-title"
+      class="hero-title font-sans font-black uppercase leading-[0.84] tracking-tight text-chrome-900"
+      aria-label={event.hero.title}
+      data-hero-title
+    >
+      {Array.from(event.hero.title.toUpperCase()).map((ch) => (
+        <span data-split-char class="inline-block" aria-hidden="true">
+          {ch === " " ? "\u00A0" : ch}
+        </span>
       ))}
     </h1>
-    <div class="text-pills">
-      <span class="pill pill--solid" data-anim="text">{event.dateLabel.short}</span>
-      <span class="pill pill--ghost" data-anim="text">{event.timeLabel}</span>
-      <span class="pill pill--ghost" data-anim="text">Black &amp; White</span>
+    <div class="mt-3 flex flex-wrap gap-1.5">
+      <span class="rounded-full bg-chrome-900 px-3.5 py-1.5 font-sans text-[9.5px] font-bold tracking-[0.18em] uppercase text-white">
+        {event.dateLabel.short}
+      </span>
+      <span class="rounded-full border border-chrome-300 px-3.5 py-1.5 font-sans text-[9.5px] font-bold tracking-[0.18em] uppercase text-chrome-600">
+        {event.timeLabel}
+      </span>
+      <span class="rounded-full border border-chrome-300 px-3.5 py-1.5 font-sans text-[9.5px] font-bold tracking-[0.18em] uppercase text-chrome-600">
+        Black &amp; White
+      </span>
     </div>
   </div>
 
   <!-- Scroll indicator -->
-  <a href="#countdown" aria-label="Ver detalles" class="scroll-ind" data-anim="text">
-    <span class="scroll-ind__dot"></span>
+  <a href="#countdown" aria-label="Ver detalles" class="z-20 flex justify-center py-3">
+    <span class="scroll-dot relative h-10 w-6 rounded-full border-2 border-chrome-300 opacity-55 transition-opacity hover:opacity-90"></span>
   </a>
 
-  <!-- ══════════════════════════════════════
-       SVG SYMBOLS (hidden, reutilizables)
-  ═══════════════════════════════════════ -->
-  <svg class="svg-defs" aria-hidden="true">
+  <!-- SVG SYMBOLS (hidden) -->
+  <svg class="absolute size-0 overflow-hidden" aria-hidden="true">
     <defs>
-      <!-- Estrella 5p metálica -->
       <symbol id="s5" viewBox="0 0 80 80">
         <defs>
           <radialGradient id="s5g" cx="30%" cy="24%" r="74%">
@@ -260,13 +199,10 @@ import { event } from "../config/event.js";
             <stop offset="100%" stop-color="#3c3c48"/>
           </radialGradient>
         </defs>
-        <path d="M40 5 L50 28 L76 28 L55 44 L63 68 L40 53 L17 68 L25 44 L4 28 L30 28 Z"
-          fill="url(#s5g)" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+        <path d="M40 5 L50 28 L76 28 L55 44 L63 68 L40 53 L17 68 L25 44 L4 28 L30 28 Z" fill="url(#s5g)" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
         <ellipse cx="31" cy="25" rx="8" ry="4.5" fill="rgba(255,255,255,0.42)" transform="rotate(-26 31 25)"/>
         <ellipse cx="25" cy="21" rx="4" ry="2.5" fill="rgba(255,255,255,0.65)" transform="rotate(-26 25 21)"/>
       </symbol>
-
-      <!-- Disco ball (sin hilo) -->
       <symbol id="db" viewBox="0 0 100 100">
         <defs>
           <radialGradient id="dbg" cx="34%" cy="28%" r="66%">
@@ -282,310 +218,47 @@ import { event } from "../config/event.js";
         <circle cx="50" cy="50" r="44" fill="#232330"/>
         <circle cx="50" cy="50" r="44" fill="url(#dbp)" clip-path="url(#dbc)"/>
         <ellipse cx="33" cy="31" rx="11" ry="7" fill="white" opacity="0.45" transform="rotate(-26 33 31)"/>
-        <ellipse cx="26" cy="25" rx="5" ry="3"  fill="white" opacity="0.75" transform="rotate(-26 26 25)"/>
-        <circle  cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <ellipse cx="26" cy="25" rx="5"  ry="3"  fill="white" opacity="0.75" transform="rotate(-26 26 25)"/>
+        <circle  cx="50" cy="50" r="44"  fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
       </symbol>
     </defs>
   </svg>
 
 </section>
 
-<style>
-/* ══════════════════════════════════════════
-   ROOT — fondo blanco, flex column
-══════════════════════════════════════════ */
-.hero-root {
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  /* altura total = viewport, con mínimo para que todo quepa */
-  min-height: 100svh;
-}
-
-/* Hidden SVG defs */
-.svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
-
-/* ══════════════════════════════════════════
-   GUIRNALDA
-══════════════════════════════════════════ */
-.garland {
-  position: relative;
-  width: 100%;
-  height: 64px;      /* mobile */
-  flex-shrink: 0;
-  overflow: visible;
-}
-.garland__wire {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.g-item {
-  position: absolute;
-  left: var(--gx);
-  top: var(--gy);
-  transform-origin: top center;
-}
-
-/* Swing suave en cada ítem */
-@media (prefers-reduced-motion: no-preference) {
-  .g-item             { animation: swing 4.5s ease-in-out infinite; }
-  .g-item[data-sw="b"]{ animation-duration: 5.5s; animation-delay: 0.5s; }
-  .g-item[data-sw="c"]{ animation-duration: 3.8s; animation-delay: 1s; }
-}
-@keyframes swing {
-  0%, 100% { transform: rotate(-2.5deg); }
-  50%       { transform: rotate(2.5deg); }
-}
-
-/* ══════════════════════════════════════════
-   STAGE — área de foto + decos
-══════════════════════════════════════════ */
-.stage {
-  position: relative;
-  flex: 1;
-  /* Establecemos una altura mínima para que los absolutos funcionen */
-  min-height: 320px;
-  /* En mobile: la foto ocupa todo el ancho menos padding */
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 0 16px;
-}
-
-/* ══════════════════════════════════════════
-   FOTO — elemento central dominante
-══════════════════════════════════════════ */
-.portrait {
-  position: relative;
-  /* Mobile: ancho máximo para que la foto sea el centro */
-  width: 72vw;
-  max-width: 300px;
-  z-index: 10;
-  flex-shrink: 0;
-  /* Pequeño margen bottom para que el texto quede justo debajo */
-  margin-bottom: 0;
-}
-.portrait__img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  object-position: top center;
-}
-.portrait { overflow: visible; }
-
-/* ══════════════════════════════════════════
-   DECOS — absolutos dentro del stage
-   Posiciones calibradas para mobile 390px
-══════════════════════════════════════════ */
-.deco { position: absolute; pointer-events: none; z-index: 5; }
-
-/* Cámara — izquierda, altura media */
-.deco--camera {
-  left: 0;
-  /* centra verticalmente en el stage */
-  top: 18%;
-  width: 120px;
-  transform: rotate(-8deg);
-  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.14));
-}
-.deco--camera svg { width: 100%; height: auto; }
-
-/* Sparkle estrellas — izquierda inferior */
-.deco--sparkle {
-  left: 0;
-  bottom: 16%;
-  width: 110px;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
-}
-.deco--sparkle svg { width: 100%; height: auto; }
-
-/* Globos — derecha */
-.deco--balloons {
-  right: 0;
-  bottom: 8%;
-  width: 110px;
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.08));
-}
-.deco--balloons svg { width: 100%; height: auto; }
-
-/* Confeti — arriba derecha */
-.deco--confetti {
-  right: 2%;
-  top: 4%;
-  width: 70px;
-  opacity: 0.85;
-}
-.deco--confetti svg { width: 100%; height: auto; }
-
-
-/* ══════════════════════════════════════════
-   TEXTO INFERIOR
-══════════════════════════════════════════ */
-.text-block {
-  position: relative;
-  z-index: 20;
-  padding: 8px 20px 16px;
-}
-.text-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.44em;
-  text-transform: uppercase;
-  color: var(--color-chrome-400);
-  margin: 0 0 2px;
-}
-.text-title {
-  font-family: var(--font-sans);
-  font-weight: 900;
-  /* clamp: min mobile / fluid / max desktop */
-  font-size: clamp(3.2rem, 18vw, 9rem);
-  line-height: 0.84;
-  letter-spacing: -0.025em;
-  text-transform: uppercase;
-  color: var(--color-chrome-900);
-  margin: 0;
-}
-.text-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 14px;
-}
-.pill {
-  font-family: var(--font-sans);
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 5px 13px;
-  border-radius: 999px;
-}
-.pill--solid {
-  background: var(--color-chrome-900);
-  color: #fff;
-}
-.pill--ghost {
-  background: transparent;
-  color: var(--color-chrome-600);
-  border: 1.5px solid var(--color-chrome-300);
-}
-
-/* ══════════════════════════════════════════
-   SCROLL INDICATOR
-══════════════════════════════════════════ */
-.scroll-ind {
-  display: flex;
-  justify-content: center;
-  padding: 12px 0 16px;
-  z-index: 20;
-}
-.scroll-ind__dot {
-  width: 24px; height: 40px;
-  border: 2px solid var(--color-chrome-300);
-  border-radius: 12px;
-  position: relative;
-  opacity: 0.55;
-  transition: opacity 0.2s;
-}
-.scroll-ind:hover .scroll-ind__dot { opacity: 0.9; }
-.scroll-ind__dot::after {
-  content: '';
-  position: absolute;
-  top: 5px; left: 50%; transform: translateX(-50%);
-  width: 3.5px; height: 6px;
-  background: var(--color-chrome-500); border-radius: 2px;
-  animation: sf 1.6s ease-in-out infinite;
-}
-@keyframes sf {
-  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.9; }
-  65%       { transform: translateX(-50%) translateY(12px); opacity: 0.1; }
-}
-
-/* ══════════════════════════════════════════
-   FLOAT / IDLE ANIMATIONS
-══════════════════════════════════════════ */
-@media (prefers-reduced-motion: no-preference) {
-  .deco--camera   { animation: fa 7s ease-in-out infinite; }
-  .deco--sparkle  { animation: fb 8.5s ease-in-out infinite 0.6s; }
-  .deco--balloons { animation: fa 6.5s ease-in-out infinite 1s; }
-  .deco--confetti { animation: fc 7.5s ease-in-out infinite 0.3s; }
-}
-@keyframes fa { 0%,100%{transform:rotate(-8deg) translateY(0)} 50%{transform:rotate(-8deg) translateY(-8px)} }
-@keyframes fb { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px) rotate(1deg)} }
-@keyframes fc { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px) rotate(-0.5deg)} }
-
-/* ══════════════════════════════════════════
-   RESPONSIVE — sm: 640px+
-══════════════════════════════════════════ */
-@media (min-width: 640px) {
-  .garland { height: 80px; }
-  .portrait { width: 52vw; max-width: 340px; }
-
-  .deco--camera   { left: 3%;  top: 15%; width: 140px; }
-  .deco--sparkle  { left: 3%;  bottom: 18%; width: 130px; }
-  .deco--balloons { right: 3%; bottom: 10%; width: 130px; }
-  .deco--confetti { right: 4%; top: 6%;  width: 80px; }
-}
-
-/* ══════════════════════════════════════════
-   RESPONSIVE — md: 768px+
-══════════════════════════════════════════ */
-@media (min-width: 768px) {
-  .portrait { width: 38vw; max-width: 400px; }
-
-  .deco--camera   { left: 6%;   top: 12%; width: 160px; }
-  .deco--sparkle  { left: 5%;   bottom: 20%; width: 150px; }
-  .deco--balloons { right: 5%;  bottom: 12%; width: 150px; }
-  .deco--confetti { right: 6%;  top: 5%;  width: 90px; }
-}
-</style>
-
 <script>
   import { gsap, prefersReducedMotion, EASE } from "../lib/gsap.client.js";
 
   const hero = document.getElementById("hero");
-  if (!hero) throw new Error("no hero");
+  if (hero) {
+    const garland = hero.querySelector<HTMLElement>(".garland");
+    const portrait = hero.querySelector<HTMLElement>(".portrait");
+    const decos   = hero.querySelectorAll<HTMLElement>(".deco");
+    const eyebrow = hero.querySelector<HTMLElement>("[data-hero-title]")?.previousElementSibling as HTMLElement | null;
+    const chars   = hero.querySelectorAll<HTMLElement>("[data-split-char]");
+    const pills   = hero.querySelectorAll<HTMLElement>("[class*='rounded-full']");
+    const chevron = hero.querySelector<HTMLElement>("a[href='#countdown']");
 
-  const garland  = hero.querySelector<HTMLElement>(".garland");
-  const portrait = hero.querySelector<HTMLElement>(".portrait");
-  const decos    = hero.querySelectorAll<HTMLElement>(".deco");
-  const eyebrow  = hero.querySelector<HTMLElement>(".text-eyebrow");
-  const chars    = hero.querySelectorAll<HTMLElement>("[data-split-char]");
-  const pills    = hero.querySelectorAll<HTMLElement>(".pill");
-  const chevron  = hero.querySelector<HTMLElement>(".scroll-ind");
+    if (prefersReducedMotion) {
+      gsap.set([garland, portrait, decos, eyebrow, chars, pills, chevron],
+        { opacity: 1, y: 0, scale: 1, skewX: 0 });
+    } else {
+      gsap.set(garland,  { opacity: 0, y: -28 });
+      gsap.set(portrait, { opacity: 0, y: 24, scale: 0.9 });
+      gsap.set(decos,    { opacity: 0, scale: 0.7 });
+      gsap.set(eyebrow,  { opacity: 0, y: 10 });
+      gsap.set(chars,    { opacity: 0, y: 44, skewX: -10 });
+      gsap.set(pills,    { opacity: 0, y: 12 });
+      gsap.set(chevron,  { opacity: 0 });
 
-  if (prefersReducedMotion) {
-    gsap.set([garland, portrait, decos, eyebrow, chars, pills, chevron],
-      { opacity: 1, y: 0, x: 0, scale: 1, skewX: 0 });
-  } else {
-    // Ocultar todo inicialmente
-    gsap.set(garland,  { opacity: 0, y: -28 });
-    gsap.set(portrait, { opacity: 0, y: 24, scale: 0.9 });
-    gsap.set(decos,    { opacity: 0, scale: 0.7 });
-    gsap.set(eyebrow,  { opacity: 0, y: 10 });
-    gsap.set(chars,    { opacity: 0, y: 44, skewX: -10 });
-    gsap.set(pills,    { opacity: 0, y: 12 });
-    gsap.set(chevron,  { opacity: 0 });
-
-    gsap.timeline({ delay: 0.06 })
-      // 1. Guirnalda cae
-      .to(garland, { opacity: 1, y: 0, duration: 0.7, ease: "back.out(1.5)" })
-      // 2. Foto emerge
-      .to(portrait, { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: "back.out(1.6)" }, "-=0.35")
-      // 3. Decos pop
-      .to(decos, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(2.2)", stagger: 0.1 }, "-=0.55")
-      // 4. Eyebrow
-      .to(eyebrow, { opacity: 1, y: 0, duration: 0.45, ease: EASE.out }, "-=0.35")
-      // 5. BIRTHDAY letra a letra
-      .to(chars, { opacity: 1, y: 0, skewX: 0, duration: 0.58, ease: EASE.expoOut, stagger: 0.042 }, "-=0.32")
-      // 6. Pills
-      .to(pills, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: EASE.out }, "-=0.28")
-      // 7. Scroll
-      .to(chevron, { opacity: 1, duration: 0.35 }, "-=0.15");
+      gsap.timeline({ delay: 0.06 })
+        .to(garland,  { opacity: 1, y: 0, duration: 0.7,  ease: "back.out(1.5)" })
+        .to(portrait, { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: "back.out(1.6)" }, "-=0.35")
+        .to(decos,    { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(2.2)", stagger: 0.1 }, "-=0.55")
+        .to(eyebrow,  { opacity: 1, y: 0, duration: 0.45, ease: EASE.out }, "-=0.35")
+        .to(chars,    { opacity: 1, y: 0, skewX: 0, duration: 0.58, ease: EASE.expoOut, stagger: 0.042 }, "-=0.32")
+        .to(pills,    { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: EASE.out }, "-=0.28")
+        .to(chevron,  { opacity: 1, duration: 0.35 }, "-=0.15");
+    }
   }
 </script>

@@ -1,0 +1,42 @@
+.hero-title {
+  font-size: clamp(2rem, 11.5vw, 9rem);
+  white-space: nowrap;
+}
+
+/* Scroll dot inner animation */
+.scroll-dot::after {
+  content: '';
+  position: absolute;
+  top: 5px; left: 50%;
+  transform: translateX(-50%);
+  width: 3.5px; height: 6px;
+  background: var(--color-chrome-500);
+  border-radius: 2px;
+  animation: sf 1.6s ease-in-out infinite;
+}
+@keyframes sf {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.9; }
+  65%       { transform: translateX(-50%) translateY(12px); opacity: 0.1; }
+}
+
+/* Guirnalda: swing por ítem */
+@media (prefers-reduced-motion: no-preference) {
+  .g-item             { animation: swing 4.5s ease-in-out infinite; }
+  .g-item[data-sw="b"]{ animation-duration: 5.5s; animation-delay: 0.5s; }
+  .g-item[data-sw="c"]{ animation-duration: 3.8s; animation-delay: 1s; }
+}
+@keyframes swing {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50%       { transform: rotate(2.5deg); }
+}
+
+/* Idle float para decos */
+@media (prefers-reduced-motion: no-preference) {
+  .deco:nth-child(2) { animation: fa 7s   ease-in-out infinite; }
+  .deco:nth-child(3) { animation: fb 8.5s ease-in-out infinite 0.6s; }
+  .deco:nth-child(4) { animation: fa 6.5s ease-in-out infinite 1s; }
+  .deco:nth-child(5) { animation: fc 7.5s ease-in-out infinite 0.3s; }
+}
+@keyframes fa { 0%,100%{ transform:rotate(-8deg) translateY(0);    } 50%{ transform:rotate(-8deg) translateY(-8px);  } }
+@keyframes fb { 0%,100%{ transform:translateY(0) rotate(0deg);      } 50%{ transform:translateY(-10px) rotate(1deg); } }
+@keyframes fc { 0%,100%{ transform:translateY(0) rotate(0deg);      } 50%{ transform:translateY(-6px) rotate(-0.5deg); } }

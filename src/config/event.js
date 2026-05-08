@@ -10,8 +10,13 @@ export const event = {
     portrait: "/images/KarCover.webp",
   },
 
-  title: "Karen's Birthday",
-  subtitle: "Está cumpliendo años",
+  // ── Hero ─────────────────────────────────────────────────────────────
+  // eyebrow: línea pequeña sobre el título principal
+  // title:   texto del h1 — se convierte a MAYÚSCULAS y se anima letra a letra
+  hero: {
+    eyebrow: "It's my",
+    title: "Birthday",
+  },
 
   // Fecha real del evento (ISO local). Alimenta el countdown.
   date: "2026-05-22T20:00:00",
@@ -43,8 +48,6 @@ export const event = {
     title: "Grupo Advertencia",
     description:
       "Grupo Norteño, originario de Escobedo Nuevo León, México.",
-    // Placeholder hasta que subas la foto del grupo:
-    // reemplaza por "/images/grupo-advertencia.jpg" cuando la tengas.
     image: "/images/Karen2.jpeg",
     imageAlt: "Grupo Advertencia en concierto",
   },
@@ -60,5 +63,5 @@ export const event = {
     label: "Guardar en Calendario",
   },
 
-  footer: "Karen is one",
+  footer: "Short",
 };
