@@ -9,40 +9,40 @@
   * Design tokens
   * ------------------------------------------------------------------ */
  @theme {
-  /* Paleta verde — del más claro al más oscuro */
-   --color-leaf-50:  #f1f7f3;
-   --color-leaf-100: #e2efe7;
-   --color-leaf-200: #c6dfd0;
-   --color-leaf-300: #9cc5ad;
-   --color-leaf-400: #6ea687;
-   --color-leaf-500: #4a8866;
-   --color-leaf-600: #386b50;
-   --color-leaf-700: #2e5740;
-   --color-leaf-800: #264634;
-   --color-leaf-900: #1f3a2c;
+  /* Acentos rosas — del más claro al más oscuro (alineado a escala rose) */
+   --color-leaf-50:  #fff1f2;
+   --color-leaf-100: #ffe4e6;
+   --color-leaf-200: #fecdd3;
+   --color-leaf-300: #fda4af;
+   --color-leaf-400: #fb7185;
+   --color-leaf-500: #f43f5e;
+   --color-leaf-600: #e11d48;
+   --color-leaf-700: #be123c;
+   --color-leaf-800: #9f1239;
+   --color-leaf-900: #881337;
  
-  /* Dress code — blanco, plateado y negro (de claro a oscuro) */
-  --color-chrome-50:  #fafafa;
-  --color-chrome-100: #f4f4f5;
-  --color-chrome-200: #e5e7eb;
-  --color-chrome-300: #d4d4d8;
-  --color-chrome-400: #a1a1aa;
-  --color-chrome-500: #71717a;
-  --color-chrome-600: #52525b;
-  --color-chrome-700: #3f3f46;
-  --color-chrome-800: #27272a;
-  --color-chrome-900: #18181b;
+  /* Neutros cálidos — grises con matiz rosa para combinar con la gama */
+  --color-chrome-50:  #fdf8fa;
+  --color-chrome-100: #f9f1f4;
+  --color-chrome-200: #eadde3;
+  --color-chrome-300: #d4c2cb;
+  --color-chrome-400: #a894a0;
+  --color-chrome-500: #857080;
+  --color-chrome-600: #675a62;
+  --color-chrome-700: #4d454a;
+  --color-chrome-800: #352f33;
+  --color-chrome-900: #231f22;
 
    /* Aliases semánticos */
   --color-primary: var(--color-chrome-900);
   --color-primary-soft: var(--color-chrome-100);
-  --color-accent: var(--color-chrome-400);
+  --color-accent: var(--color-leaf-500);
    --color-surface: #ffffff;
-   --color-canvas: #fafafa;
-  --color-ink: #000000;
+   --color-canvas: #fef7f9;
+  --color-ink: #1a1416;
   --color-muted: var(--color-chrome-500);
 
-  /* Aliases opcionales para la gama verde */
+  /* Aliases para acentos rosa (compatibilidad con utilidades existentes) */
   --color-nature-primary: var(--color-leaf-700);
   --color-nature-soft: var(--color-leaf-100);
   --color-nature-accent: var(--color-leaf-300);
@@ -57,9 +57,9 @@
    /* Radios y sombras */
    --radius-card: 1.25rem;
    --radius-card-lg: 1.75rem;
-  --shadow-card: 0 8px 24px rgba(24, 24, 27, 0.1);
-  --shadow-soft: 0 2px 8px rgba(24, 24, 27, 0.06);
-  --shadow-glow: 0 20px 60px -20px rgba(0, 0, 0, 0.22);
+  --shadow-card: 0 8px 24px rgba(136, 19, 55, 0.09);
+  --shadow-soft: 0 2px 8px rgba(136, 19, 55, 0.05);
+  --shadow-glow: 0 20px 60px -20px rgba(136, 19, 55, 0.2);
  
    /* Animaciones */
    --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
@@ -75,10 +75,10 @@
      color: var(--color-ink);
      background-color: var(--color-canvas);
      scroll-behavior: smooth;
-    /* Patrón de fondo sutil — gris plateado muy tenue */
+    /* Patrón de fondo sutil — rosa polvo muy tenue */
      background-image: radial-gradient(
        circle at 1px 1px,
-      rgba(161, 161, 170, 0.12) 1px,
+      rgba(225, 29, 72, 0.055) 1px,
        transparent 0
      );
      background-size: 24px 24px;
@@ -133,22 +133,22 @@
  /* Vignette para hero — más rico que un degradado simple */
  @utility hero-vignette {
    background:
-    radial-gradient(ellipse at center, transparent 30%, rgba(24, 24, 27, 0.5) 100%),
-     linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, transparent 35%, transparent 65%, var(--color-canvas) 100%);
+    radial-gradient(ellipse at center, transparent 30%, rgba(54, 20, 32, 0.48) 100%),
+     linear-gradient(to bottom, rgba(40, 12, 22, 0.32) 0%, transparent 35%, transparent 65%, var(--color-canvas) 100%);
  }
  
 /* Glassmorphism plateado para pills sobre el hero */
 @utility glass-chrome {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(12px) saturate(140%);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 228, 230, 0.5);
 }
 
-/* Glassmorphism verde teñido para pills sobre el hero */
+/* Glassmorphism rosa suave para pills sobre el hero */
 @utility glass-leaf {
-  background: rgba(241, 247, 243, 0.18);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 241, 242, 0.22);
+  backdrop-filter: blur(12px) saturate(145%);
+  -webkit-backdrop-filter: blur(12px) saturate(145%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }

@@ -29,7 +29,7 @@ export const event = {
       key: "dresscode",
       label: "Dresscode",
       title: "Black & White",
-      description: "lorem",
+      description: "Para todos",
       image: "/images/Dresscode.jpeg",
       icon: "hanger",
     },
@@ -37,9 +37,11 @@ export const event = {
 
   // Galería
   gallery: [
-    { src: "/images/Karen1.jpeg", alt: "Karen 1" },
-    { src: "/images/Karen2.jpeg", alt: "Karen 2" },
-    { src: "/images/Karen3.jpeg", alt: "Karen 3" },
+    { src: "/images/Gal1.webp", alt: "Karen 1" },
+    { src: "/images/Gal2.webp", alt: "Karen 2" },
+    { src: "/images/Gal3.webp", alt: "Karen 3" },
+    { src: "/images/Gal4.webp", alt: "Karen 4" },
+    { src: "/images/Gal5.webp", alt: "Karen 5" }
   ],
 
   // Highlight — atracción especial del evento (con imagen)
@@ -48,7 +50,7 @@ export const event = {
     title: "Grupo Advertencia",
     description:
       "Grupo Norteño, originario de Escobedo Nuevo León, México.",
-    image: "/images/Karen2.jpeg",
+    image: "/images/Grupo.jpeg",
     imageAlt: "Grupo Advertencia en concierto",
   },
 
@@ -63,5 +65,11 @@ export const event = {
     label: "Guardar en Calendario",
   },
 
-  footer: "Short",
+  registry: {
+    title: "Registry",
+    description: "Wishlist para la fiesta.",
+    url: "#",
+  },
+
+  footer: "Short"
 };

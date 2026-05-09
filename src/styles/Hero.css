@@ -1,6 +1,7 @@
-.hero-title {
-  font-size: clamp(2rem, 11.5vw, 9rem);
-  white-space: nowrap;
+/* Arco de texto — ocupa el ancho completo del stage, altura proporcional al viewBox */
+.arc-text {
+  /* La altura del SVG = 160/360 × ancho → escala con el contenedor */
+  height: auto;
 }
 
 /* Scroll dot inner animation */
