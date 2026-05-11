@@ -7,7 +7,7 @@ export const event = {
   honoree: {
     name: "Karen",
     age: 1,
-    portrait: "/images/PanConGrano.svg",
+    portrait: "/images/KarenCoverFHD.png",
   },
 
   // ── Hero ─────────────────────────────────────────────────────────────
