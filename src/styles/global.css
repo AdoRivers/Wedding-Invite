@@ -134,7 +134,7 @@
  @utility hero-vignette {
    background:
     radial-gradient(ellipse at center, transparent 30%, rgba(54, 20, 32, 0.48) 100%),
-     linear-gradient(to bottom, rgba(40, 12, 22, 0.32) 0%, transparent 35%, transparent 65%, var(--color-canvas) 100%);
+     linear-gradient(to bottom, rgba(40, 12, 22, 0.32) 0%, transparent 10%, transparent 85%, var(--color-canvas) 100%);
  }
  
 /* Glassmorphism plateado para pills sobre el hero */
