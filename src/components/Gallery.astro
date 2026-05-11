@@ -5,7 +5,7 @@ const slides = event.gallery;
 ---
 
 <section class="px-6 py-12 sm:py-16" aria-labelledby="gallery-title">
-  <div class="mx-auto max-w-2xl">
+  <div class="mx-auto w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl">
     <h2
       id="gallery-title"
       class="text-center text-xs font-medium uppercase tracking-[0.3em] text-leaf-700 sm:text-sm"
@@ -20,9 +20,9 @@ const slides = event.gallery;
       aria-roledescription="carousel"
       aria-label="Galería de fotos"
     >
-      <!-- Viewport con aspect ratio fijo y marco verde -->
+      <!-- Viewport alineado a las fotos (1600×1142 → 800/571); antes 4/5 en móvil recortaba los lados -->
       <div
-        class="overflow-hidden rounded-card-lg shadow-glow ring-1 ring-leaf-200/60 aspect-[4/5] sm:aspect-[16/10] bg-leaf-100"
+        class="mx-auto w-full overflow-hidden rounded-card-lg shadow-glow ring-1 ring-leaf-200/60 bg-leaf-100 aspect-[800/571]"
         data-viewport
       >
         <div

@@ -37,11 +37,11 @@ export const event = {
 
   // Galería
   gallery: [
-    { src: "/images/Gal5.jpeg", alt: "Karen 1" },
-    { src: "/images/Gal4.jpeg", alt: "Karen 2" },
-    { src: "/images/Gal3.jpeg", alt: "Karen 3" },
-    { src: "/images/Gal2.jpeg", alt: "Karen 4" },
-    { src: "/images/Gal1.jpeg", alt: "Karen 5" }
+    { src: "/images/Gal1.webp", alt: "Karen 1" },
+    { src: "/images/Gal2.webp", alt: "Karen 2" },
+    { src: "/images/Gal3.webp", alt: "Karen 3" },
+    { src: "/images/Gal4.webp", alt: "Karen 4" },
+    { src: "/images/Gal5.webp", alt: "Karen 5" }
   ],
 
   // Highlight — atracción especial del evento (con imagen)
