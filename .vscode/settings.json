@@ -1,4 +1,6 @@
 {
   "css.lint.unknownAtRules": "ignore",
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

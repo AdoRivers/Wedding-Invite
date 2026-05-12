@@ -70,6 +70,11 @@ export const event = {
     description: "Wishlist para la fiesta.",
     url: "#",
   },
+  
+  calendar:{
+    title: "Karen's",
+    subtitle: "Birthday"
+  },
 
-  footer: "Short"
+  footer: "JD Fotografía"
 };
