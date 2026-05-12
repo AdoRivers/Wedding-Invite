@@ -10,7 +10,7 @@ const end = endDate.toISOString().slice(0, 19);
 
 const uid  = `karen-birthday-2026@birthday-invite`;
 const now  = new Date().toISOString().replace(/[-:.]/g, "").slice(0, 15) + "Z";
-const summary = `${event.hero.eyebrow} ${event.hero.title}`.trim();
+const summary = `${event.calendar.title} ${event.calendar.subtitle}`.trim();
 const desc = `¡Celebra con nosotros el cumpleaños de ${event.honoree.name}!`;
 
 const ics = [
