@@ -7,7 +7,7 @@ endDate.setHours(endDate.getHours() + 3);
 const endISO = endDate.toISOString().slice(0, 19);
 
 const fmt   = (s: string) => s.replace(/[-:]/g, "").slice(0, 15);
-const title = `${event.hero.eyebrow} ${event.hero.title}`.trim();
+const title = `${event.calendar.title} ${event.calendar.subtitle}`.trim();
 const desc  = `¡Celebra con nosotros el cumpleaños de ${event.honoree.name}!`;
 const loc   = event.location.address;
 
