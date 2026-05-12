@@ -1,107 +1,69 @@
 ---
 import { event } from "../config/event.js";
-import Camera from "./icons/Camera.astro";
-import Sparkle from "./icons/Sparkle.astro";
-import Balloons from "./icons/Balloons.astro";
-import Confetti from "./icons/Confetti.astro";
 ---
 
 <section
   id="hero"
-  class="relative flex min-h-svh w-full flex-col overflow-visible bg-white"
+  class="relative flex min-h-svh w-full flex-col bg-white"
   aria-labelledby="hero-title"
 >
 
-  <!-- ══════════════════ GUIRNALDA ══════════════════ -->
-  <div class="garland relative h-16 w-full shrink-0 overflow-visible sm:h-20" aria-hidden="true">
+  <!-- ══════════════════ GUIRNALDA — se superpone sobre la imagen ══════════════════ -->
+  <div class="garland relative z-10 h-16 w-full shrink-0 overflow-visible sm:h-20 -mb-16 sm:-mb-20" aria-hidden="true">
     <svg class="absolute inset-0 h-full w-full" viewBox="0 0 390 56" preserveAspectRatio="none">
       <path d="M-10 8 Q55 38 120 12 Q195 -8 270 16 Q330 36 400 10"
         fill="none" stroke="#c0c0c8" stroke-width="1" opacity="0.6"/>
     </svg>
-    <!-- Estrellas + disco balls: posición via inline style (valores únicos por ítem) -->
-    <div class="g-item absolute origin-top" style="left:3%;  top:0px;"   data-sw="a"><svg viewBox="0 0 80 80" width="46" height="46"><use href="#s5"/></svg></div>
-    <div class="g-item absolute origin-top" style="left:13%; top:14px;"  data-sw="b"><svg viewBox="0 0 100 118" width="40" height="48"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
-    <div class="g-item absolute origin-top" style="left:25%; top:2px;"   data-sw="a"><svg viewBox="0 0 80 80" width="42" height="42"><use href="#s5"/></svg></div>
-    <div class="g-item absolute origin-top" style="left:37%; top:10px;"  data-sw="c"><svg viewBox="0 0 100 118" width="38" height="46"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
-    <div class="g-item absolute origin-top" style="left:49%; top:0px;"   data-sw="b"><svg viewBox="0 0 80 80" width="44" height="44"><use href="#s5"/></svg></div>
-    <div class="g-item absolute origin-top" style="left:61%; top:12px;"  data-sw="a"><svg viewBox="0 0 100 118" width="36" height="44"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
-    <div class="g-item absolute origin-top" style="left:73%; top:2px;"   data-sw="c"><svg viewBox="0 0 80 80" width="40" height="40"><use href="#s5"/></svg></div>
-    <div class="g-item absolute origin-top" style="left:83%; top:8px;"   data-sw="b"><svg viewBox="0 0 100 118" width="36" height="44"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
-    <div class="g-item absolute origin-top" style="left:93%; top:0px;"   data-sw="a"><svg viewBox="0 0 80 80" width="38" height="38"><use href="#s5"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:3%;  top:0px;"  data-sw="a"><svg viewBox="0 0 80 80" width="46" height="46"><use href="#s5"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:13%; top:14px;" data-sw="b"><svg viewBox="0 0 100 118" width="40" height="48"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:25%; top:2px;"  data-sw="a"><svg viewBox="0 0 80 80" width="42" height="42"><use href="#s5"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:37%; top:10px;" data-sw="c"><svg viewBox="0 0 100 118" width="38" height="46"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:49%; top:0px;"  data-sw="b"><svg viewBox="0 0 80 80" width="44" height="44"><use href="#s5"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:61%; top:12px;" data-sw="a"><svg viewBox="0 0 100 118" width="36" height="44"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:73%; top:2px;"  data-sw="c"><svg viewBox="0 0 80 80" width="40" height="40"><use href="#s5"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:83%; top:8px;"  data-sw="b"><svg viewBox="0 0 100 118" width="36" height="44"><line x1="50" y1="0" x2="50" y2="16" stroke="#c0c0c8" stroke-width="1.2"/><use href="#db" x="0" y="16" width="100" height="100"/></svg></div>
+    <div class="g-item absolute origin-top" style="left:93%; top:0px;"  data-sw="a"><svg viewBox="0 0 80 80" width="38" height="38"><use href="#s5"/></svg></div>
   </div>
 
-  <!-- ══════════════════ STAGE ══════════════════ -->
-  <div class="relative flex min-h-[70vw] flex-1 items-end justify-center px-4 sm:min-h-96 md:min-h-[500px]">
+  <!-- ══════════════════ STAGE — imagen de fondo ══════════════════ -->
+  <div class="stage relative flex-1 overflow-visible">
 
-    <!-- Texto en arco — posicionado en el espacio superior del stage -->
+    <!-- Imagen de fondo festiva -->
+    <img
+      src="/images/hero-bg.svg"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 h-full w-full object-cover object-bottom sm:object-center"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+
+    <!-- Degradado superior: muy sutil, solo para legibilidad del texto -->
+    <div class="absolute inset-x-0 top-0 h-[35%] bg-gradient-to-b from-white/60 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Degradado inferior: leve transición al blanco -->
+    <div class="absolute inset-x-0 bottom-0 h-[20%] bg-gradient-to-t from-white/70 to-transparent pointer-events-none" aria-hidden="true"></div>
+
+    <!-- Texto en arco sobre el degradado superior -->
     <div class="arc-text pointer-events-none absolute inset-x-0 top-0 z-20 flex items-start justify-center pt-4" aria-hidden="true">
-      <svg
-        viewBox="0 0 360 160"
-        class="w-full max-w-[500px]"
-        preserveAspectRatio="xMidYMin meet"
-      >
+      <svg viewBox="0 0 360 160" class="w-full max-w-[500px]" preserveAspectRatio="xMidYMin meet">
         <defs>
-          <!-- Eyebrow: radio más pequeño → curva más alta en el viewBox -->
           <path id="ae" d="M 40,100 A 260,260 0 0,1 320,100" fill="none"/>
-          <!-- Título: radio más grande → curva más plana y más baja -->
-          <path id="at" d="M  0,158 A 340,340 0 0,1 360,158" fill="none"/>
+          <path id="at" d="M   0,158 A 340,340 0 0,1 360,158" fill="none"/>
         </defs>
-        <!-- Eyebrow — va PRIMERO (más arriba en el arco) -->
-        <text
-          font-family="var(--font-sans),sans-serif"
-          font-weight="700"
-          letter-spacing="0.35em"
-          text-anchor="middle"
-          fill="var(--color-chrome-400)"
-          font-size="22"
-        >
+        <text font-family="var(--font-sans),sans-serif" font-weight="700" letter-spacing="0.35em" text-anchor="middle" fill="var(--color-chrome-400)" font-size="22">
           <textPath href="#ae" startOffset="50%">{event.hero.eyebrow.toUpperCase()}</textPath>
         </text>
-        <!-- Título — va SEGUNDO (más abajo, debajo del eyebrow) -->
-        <text
-          font-family="var(--font-sans),sans-serif"
-          font-weight="900"
-          letter-spacing="-0.01em"
-          text-anchor="middle"
-          fill="var(--color-chrome-900)"
-          font-size="58"
-        >
+        <text font-family="var(--font-sans),sans-serif" font-weight="900" letter-spacing="-0.01em" text-anchor="middle" fill="var(--color-chrome-900)" font-size="58">
           <textPath href="#at" startOffset="50%">{event.hero.title.toUpperCase()}</textPath>
         </text>
       </svg>
     </div>
 
-    <!-- Foto central -->
-    <div class="portrait relative z-10 w-[72vw] max-w-[300px] shrink-0 overflow-visible sm:max-w-[340px] md:w-[38vw] md:max-w-[400px]">
-      <img
-        src={event.honoree.portrait}
-        alt={`Retrato de ${event.honoree.name}`}
-        class="block h-auto w-full object-cover object-top"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </div>
+    <!-- h1 semántico -->
+    <h1 id="hero-title" class="sr-only">{event.hero.eyebrow} {event.hero.title}</h1>
 
-    <!-- h1 semántico — accesibilidad -->
-    <h1 id="hero-title" class="sr-only" data-hero-title>
-      {event.hero.eyebrow} {event.hero.title}
-    </h1>
-
-    <!-- Cámara — izquierda media -->
-    <Camera/>
-
-    <!-- Sparkle estrellas 4p — izquierda inferior -->
-    <Sparkle/>
-
-    <!-- Globos — derecha -->
-    <Balloons/>
-
-    <!-- Confeti — derecha superior -->
-    <Confetti/>
-
-  </div>
-  <!-- /stage -->
+  </div><!-- /stage -->
 
   <!-- ══════════════════ PILLS ══════════════════ -->
   <div class="relative z-20 px-5 pt-3 pb-5">
@@ -118,12 +80,15 @@ import Confetti from "./icons/Confetti.astro";
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <a href="#countdown" aria-label="Ver detalles" class="z-20 flex justify-center py-3">
-    <span class="scroll-dot relative h-10 w-6 rounded-full border-2 border-chrome-300 opacity-55 transition-opacity hover:opacity-90"></span>
-  </a>
+  <!-- Recordatorio regalo -->
+  <div class="z-20 flex flex-col items-center gap-1 py-4 pb-6">
+    <p class="font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-chrome-400">
+      no olvides mi regalo
+    </p>
+    <p class="text-xl" aria-hidden="true">🎁 &nbsp; 📩</p>
+  </div>
 
-  <!-- SVG SYMBOLS (hidden) -->
+  <!-- SVG SYMBOLS -->
   <svg class="absolute size-0 overflow-hidden" aria-hidden="true">
     <defs>
       <symbol id="s5" viewBox="0 0 80 80">
@@ -161,36 +126,61 @@ import Confetti from "./icons/Confetti.astro";
 
 </section>
 
+<style>
+/* Guirnalda se superpone sobre la imagen */
+.garland { position: relative; z-index: 10; }
+
+/* Stage: altura mínima según breakpoint */
+.stage {
+  min-height: 65vw;
+  /* Clip solo la imagen interna, no el contenido que sobresale (guirnalda) */
+}
+.stage > img {
+  clip-path: inset(0);   /* recorta la imagen al stage sin afectar elementos z superiores */
+}
+@media (min-width: 640px) {
+  .stage { min-height: 420px; }
+}
+@media (min-width: 768px) {
+  .stage { min-height: 520px; }
+}
+
+
+/* Guirnalda swing */
+@media (prefers-reduced-motion: no-preference) {
+  .g-item             { animation: swing 4.5s ease-in-out infinite; }
+  .g-item[data-sw="b"]{ animation-duration: 5.5s; animation-delay: 0.5s; }
+  .g-item[data-sw="c"]{ animation-duration: 3.8s; animation-delay: 1s; }
+}
+@keyframes swing {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50%       { transform: rotate(2.5deg); }
+}
+</style>
+
 <script>
   import { gsap, prefersReducedMotion, EASE } from "../lib/gsap.client.js";
 
   const hero = document.getElementById("hero");
   if (hero) {
     const garland = hero.querySelector<HTMLElement>(".garland");
-    const portrait = hero.querySelector<HTMLElement>(".portrait");
-    const arcText  = hero.querySelector<SVGElement>(".arc-text");
-    const decos    = hero.querySelectorAll<HTMLElement>(".deco");
-    const pills    = hero.querySelectorAll<HTMLElement>("[class*='rounded-full']");
-    const chevron  = hero.querySelector<HTMLElement>("a[href='#countdown']");
+    const heroBg  = hero.querySelector<HTMLImageElement>(".stage img");
+    const arcText = hero.querySelector<HTMLElement>(".arc-text");
+    const pills   = hero.querySelectorAll<HTMLElement>("[class*='rounded-full']");
 
     if (prefersReducedMotion) {
-      gsap.set([garland, portrait, arcText, decos, pills, chevron],
-        { opacity: 1, y: 0, scale: 1 });
+      gsap.set([garland, heroBg, arcText, pills], { opacity: 1, y: 0, scale: 1 });
     } else {
       gsap.set(garland,  { opacity: 0, y: -28 });
-      gsap.set(portrait, { opacity: 0, y: 24, scale: 0.9 });
+      gsap.set(heroBg,   { opacity: 0, scale: 1.04 });
       gsap.set(arcText,  { opacity: 0 });
-      gsap.set(decos,    { opacity: 0, scale: 0.7 });
       gsap.set(pills,    { opacity: 0, y: 12 });
-      gsap.set(chevron,  { opacity: 0 });
 
       gsap.timeline({ delay: 0.06 })
-        .to(garland,  { opacity: 1, y: 0, duration: 0.7,  ease: "back.out(1.5)" })
-        .to(portrait, { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: "back.out(1.6)" }, "-=0.35")
-        .to(arcText,  { opacity: 1, duration: 0.6, ease: EASE.out }, "-=0.4")
-        .to(decos,    { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(2.2)", stagger: 0.1 }, "-=0.5")
-        .to(pills,    { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: EASE.out }, "-=0.28")
-        .to(chevron,  { opacity: 1, duration: 0.35 }, "-=0.15");
+        .to(garland,  { opacity: 1, y: 0, duration: 0.7, ease: "back.out(1.5)" })
+        .to(heroBg,   { opacity: 1, scale: 1, duration: 1.1, ease: "power2.out" }, "-=0.4")
+        .to(arcText,  { opacity: 1, duration: 0.7, ease: EASE.out }, "-=0.5")
+        .to(pills,    { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: EASE.out }, "-=0.2");
     }
   }
 </script>
