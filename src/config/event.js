@@ -7,61 +7,69 @@ export const event = {
   honoree: {
     name: "Karen",
     age: 1,
-    portrait: "/images/KarenCoverFHD.png",
+    portrait: "/images/BodaDeOro.svg",
   },
 
   // ── Hero ─────────────────────────────────────────────────────────────
   // eyebrow: línea pequeña sobre el título principal
   // title:   texto del h1 — se convierte a MAYÚSCULAS y se anima letra a letra
   hero: {
-    eyebrow: "It's my",
-    title: "Birthday",
+    eyebrow: "Nuestra",
+    title: "Boda de Oro",
   },
 
   // Fecha real del evento (ISO local). Alimenta el countdown.
-  date: "2026-05-22T20:00:00",
-  dateLabel: { day: "22", month: "Mayo", short: "MAYO 22" },
-  timeLabel: "08:00 PM",
+  date: "2026-07-05T11:00:00",
+  dateLabel: { day: "5", month: "Julio", short: "Julio 5" },
+  timeLabel: "11:00 AM",
 
   // Tarjetas de información: temática + dresscode
   info: [
     {
       key: "dresscode",
       label: "Dresscode",
-      title: "Black & White",
+      title: "Semiformal",
       description: "Para todos",
-      image: "/images/Dresscode.jpeg",
+      image: "/images/Dresscode.jpg",
       icon: "hanger",
     },
   ],
 
   // Galería
   gallery: [
-    { src: "/images/Gal1.jpeg", alt: "Karen 1" },
-    { src: "/images/Gal2.jpeg", alt: "Karen 2" },
-    { src: "/images/Gal3.jpeg", alt: "Karen 3" },
-    { src: "/images/Gal4.jpeg", alt: "Karen 4" },
-    { src: "/images/Gal5.jpeg", alt: "Karen 5" }
+    { src: "/images/Wed1.jpeg", alt: "Boda 1" },
+    { src: "/images/Wed2.jpeg", alt: "Boda 2" },
+    { src: "/images/Wed3.jpeg", alt: "Boda 3" },
+    { src: "/images/Wed4.jpeg", alt: "Boda 4" },
+    { src: "/images/Gal5.jpeg", alt: "Boda 5" }
   ],
 
   // Highlight — atracción especial del evento (con imagen)
-  highlight: {
+ /* highlight: {
     eyebrow: "Presentación estelar",
     title: "Grupo Advertencia",
     description:
       "Grupo Norteño, originario de Escobedo Nuevo León, México.",
     image: "/images/Grupo.jpeg",
     imageAlt: "Grupo Advertencia en concierto",
-  },
+  },*/
 
-  location: {
-    name: "Huisache 331",
-    address: "Huisache 331, Rincón de Huinala, 66644 Cdad. Apodaca, N.L.",
-    mapsQuery: "Huisache 331, Rincón de Huinala, 66644 Cdad. Apodaca, N.L.",
+  locations: {
+    church: {
+      label: "Ceremonia",
+      name: "Parroquia de San Juan Bautista",
+      address: "Calle de la Iglesia, Guadalupe, N.L.",
+      mapsQuery: "Parroquia de San Juan Bautista, Guadalupe, N.L.",
+    },
+    venue: {
+      label: "Recepción",
+      name: "Centro Social Quintero",
+      address: "Durango 118, Orizaba, 67167 Guadalupe, N.L.",
+      mapsQuery: "Durango 118, Orizaba, 67167 Guadalupe, N.L.",
+    },
   },
 
   rsvp: {
-    url: "mailto:rsvp@example.com?subject=RSVP%20Karen%27s%20Birthday",
     label: "Guardar en Calendario",
   },
 
@@ -72,9 +80,9 @@ export const event = {
   },
   
   calendar:{
-    title: "Karen's",
-    subtitle: "Birthday"
+    title: "Boda",
+    subtitle: "De Oro"
   },
 
-  footer: "JD Fotografía"
+  footer: "Grupo DALFA"
 };

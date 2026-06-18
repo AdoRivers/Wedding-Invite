@@ -9,7 +9,7 @@ const endISO = endDate.toISOString().slice(0, 19);
 const fmt   = (s: string) => s.replace(/[-:]/g, "").slice(0, 15);
 const title = `${event.calendar.title} ${event.calendar.subtitle}`.trim();
 const desc  = `¡Celebra con nosotros el cumpleaños de ${event.honoree.name}!`;
-const loc   = event.location.address;
+const loc   = event.locations.venue.address;
 
 // Google Calendar URL — Android, Windows, otros
 const googleURL = [

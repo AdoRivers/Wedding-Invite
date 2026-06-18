@@ -1,12 +1,12 @@
 .timeline-bg {
     background:
-      radial-gradient(ellipse at 100% 0%, rgba(212,212,216,0.15) 0%, transparent 55%),
-      radial-gradient(ellipse at 0% 100%, rgba(161,161,170,0.1) 0%, transparent 50%);
+      radial-gradient(ellipse at 100% 0%, rgba(212,175,55,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 0% 100%, rgba(180,130,30,0.10) 0%, transparent 50%);
   }
-  
+
 .timeline-line {
     position: absolute;
-    left: 17px; /* alineada al centro del nodo (pl-12 = 48px, nodo ~22px, centro = 48/2 - 11 ≈ 17) */
+    left: 17px;
     top: 6px;
     bottom: 0;
     width: 1.5px;
@@ -18,7 +18,7 @@
   .timeline-line-fill {
     position: absolute;
     inset: 0;
-    background: var(--color-chrome-900);
+    background: var(--color-leaf-600);
     transform-origin: top center;
     transform: scaleY(0);
   }
@@ -26,21 +26,21 @@
   /* Nodo circular con ícono */
   .timeline-node {
     position: absolute;
-    left: 6px; /* centrado sobre la línea (17px - 11px) */
+    left: 6px;
     top: 0;
     display: grid;
     place-items: center;
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: var(--color-chrome-900);
-    border: 2px solid var(--color-chrome-200);
+    background: var(--color-leaf-700);
+    border: 2px solid var(--color-chrome-300);
     transition: transform 0.2s, background 0.2s;
   }
 
   .timeline-item:hover .timeline-node {
     transform: scale(1.15);
-    background: var(--color-chrome-700);
+    background: var(--color-leaf-500);
   }
 
   /* Last item — nodo sin línea bajo él */

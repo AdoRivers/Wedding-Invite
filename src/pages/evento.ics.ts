@@ -26,7 +26,7 @@ const ics = [
   `DTEND;TZID=America/Monterrey:${fmt(end)}`,
   `SUMMARY:${summary}`,
   `DESCRIPTION:${desc}`,
-  `LOCATION:${event.location.address}`,
+  `LOCATION:${event.locations.venue.address}`,
   "BEGIN:VALARM",
   "TRIGGER:-PT60M",
   "ACTION:DISPLAY",

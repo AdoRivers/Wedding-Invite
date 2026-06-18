@@ -14,39 +14,33 @@ import "../styles/eventTimeline.css";
 interface TimelineItem {
   time: string;
   title: string;
-  description: string;
-  type?: "open" | "music" | "food" | "snacks" | "farewell";
+  type?: "church" | "open" | "music" | "food" | "snacks" | "farewell";
 }
 
 const defaultTimeline: TimelineItem[] = [
   {
     time: event.timeLabel,
-    title: "Llegada & Bienvenida",
-    description: "Puertas abiertas, espero que llegues con un 12 de michelob para mi",
-    type: "open",
+    title: "Misa",
+    type: "church",
   },
   {
-    time: "09:00 PM",
-    title: "Cena",
-    description: "La comida favorita de todos, menos la mía",
+    time: "01:00 PM",
+    title: "Bienvenida",
     type: "food",
   },
   {
-    time: "11:00 PM",
-    title: "Grupo Advertencia",
-    description: "Y aquí es donde te paras a bailar por que para eso invite puro argüendero.",
+    time: "04:00 PM",
+    title: "Comida",
     type: "music",
   },
   {
-    time: "12:00 AM",
-    title: "Snacks, Elotes y Maruchans",
-    description: "Para el bajón.",
+    time: "08:00 PM",
+    title: "Cena",
     type: "snacks",
   },
   {
-    time: "02:00 AM",
-    title: "¡SE NOS VAN!",
-    description: "El grupo se va, pero la peda continúa.",
+    time: "12:00 AM",
+    title: "Despedida",
     type: "farewell",
   },
 ];
@@ -56,6 +50,7 @@ const items: TimelineItem[] = (event as any).timeline ?? defaultTimeline;
 
 
 const icons: Record<NonNullable<TimelineItem["type"]>, string> = {
+  church: `<path d="m18 7 4 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9l4-2"/><path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/><path d="M18 22V5l-6-3-6 3v17"/><path d="M12 7v5"/><path d="M10 9h4"/>`,
   open:  `<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>`,
   music: `<circle cx="9" cy="18" r="3"/><circle cx="15" cy="14" r="3"/><polyline points="12 18 12 9 18 9"/>`,
   food:  `<path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>`,
@@ -129,11 +124,6 @@ const icons: Record<NonNullable<TimelineItem["type"]>, string> = {
           <h3 class="mb-1 font-sans text-sm font-bold uppercase tracking-wide text-chrome-900 sm:text-base">
             {item.title}
           </h3>
-
-          <!-- Descripción -->
-          <p class="font-sans text-xs leading-relaxed text-chrome-500 sm:text-sm">
-            {item.description}
-          </p>
         </li>
       ))}
     </ol>
