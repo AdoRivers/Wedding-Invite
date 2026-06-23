@@ -58,15 +58,15 @@ export const event = {
   locations: {
     church: {
       label: "Ceremonia",
-      name: "Parroquia de San Juan Bautista",
-      address: "Calle de la Iglesia, Guadalupe, N.L.",
-      mapsQuery: "Parroquia de San Juan Bautista, Guadalupe, N.L.",
+      name: "Parroquia Ntra. Madre Santísima de la luz",
+      address: "Parroquia ntra. madre santísima de la luz",
+      mapsQuery: "MQMR+MC Guadalupe, Nuevo León",
     },
     venue: {
       label: "Recepción",
       name: "Centro Social Quintero",
-      address: "Durango 118, Orizaba, 67167 Guadalupe, N.L.",
-      mapsQuery: "Durango 118, Orizaba, 67167 Guadalupe, N.L.",
+      address: "Durango 108, Orizaba, 67167 Guadalupe, N.L.",
+      mapsQuery: "MRM3+FQ Guadalupe, Nuevo León.",
     },
   },
 
@@ -84,6 +84,45 @@ export const event = {
     title: "Boda",
     subtitle: "De Oro"
   },
+
+  // ── Programa del día ─────────────────────────────────────────────────
+  timeline: [
+    {
+      time: "12:00 PM",
+      title: "Misa",
+      description:
+        "Misa de acción de gracias en la parroquia, en gratitud por cincuenta años de amor y vida compartida.",
+      type: "church",
+    },
+    {
+      time: "02:00 PM",
+      title: "Bienvenida",
+      description:
+        "Recepción en el salón para saludarnos, tomar algo fresco y acomodarse antes del banquete.",
+      type: "open",
+    },
+    {
+      time: "04:00 PM",
+      title: "Comida",
+      description:
+        "Banquete en honor a los festejados, con brindis y tiempo para compartir en mesa.",
+      type: "food",
+    },
+    {
+      time: "08:00 PM",
+      title: "Cena",
+      description:
+        "Cena ligera y postre para seguir la fiesta: música, conversación y buena compañía.",
+      type: "snacks",
+    },
+    {
+      time: "12:00 AM",
+      title: "Despedida",
+      description:
+        "Cierre de la celebración y un sincero gracias a quienes nos acompañaron en este día.",
+      type: "farewell",
+    },
+  ],
 
   footer: "Grupo DALFA"
 };

@@ -43,6 +43,19 @@
     background: var(--color-leaf-500);
   }
 
+  .timeline-item.is-active .timeline-node {
+    background: var(--color-leaf-500);
+    border-color: var(--color-leaf-600);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+  }
+
+  .timeline-desc {
+    max-width: 28rem;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: var(--color-chrome-500);
+  }
+
   /* Last item — nodo sin línea bajo él */
   .timeline-item:last-child .timeline-line {
     display: none;
