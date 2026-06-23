@@ -4,24 +4,26 @@
  */
 
 export const event = {
-  honoree: {
-    name: "Karen",
-    age: 1,
-    portrait: "/images/BodaDeOro.svg",
-  },
+ 
 
   // ── Hero ─────────────────────────────────────────────────────────────
-  // eyebrow: línea pequeña sobre el título principal
-  // title:   texto del h1 — se convierte a MAYÚSCULAS y se anima letra a letra
   hero: {
     eyebrow: "Nuestra",
     title: "Boda de Oro",
   },
 
+  // ── Pareja ───────────────────────────────────────────────────────────
+  couple: {
+    partner1: "",        // Actualiza con el nombre del novio
+    partner2: "",
+    story: "Cincuenta años de amor, de complicidad y de vida compartida. Los invitamos a celebrar con nosotros este regalo tan grande.",
+    portrait: "/images/BodaDeOro.svg",
+  },
+
   // Fecha real del evento (ISO local). Alimenta el countdown.
-  date: "2026-07-05T11:00:00",
+  date: "2026-07-05T12:00:00",
   dateLabel: { day: "5", month: "Julio", short: "Julio 5" },
-  timeLabel: "11:00 AM",
+  timeLabel: "12:00 PM",
 
   // Tarjetas de información: temática + dresscode
   info: [
@@ -41,7 +43,6 @@ export const event = {
     { src: "/images/Wed2.jpeg", alt: "Boda 2" },
     { src: "/images/Wed3.jpeg", alt: "Boda 3" },
     { src: "/images/Wed4.jpeg", alt: "Boda 4" },
-    { src: "/images/Gal5.jpeg", alt: "Boda 5" }
   ],
 
   // Highlight — atracción especial del evento (con imagen)

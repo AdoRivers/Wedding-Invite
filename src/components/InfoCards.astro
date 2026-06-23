@@ -2,27 +2,43 @@
 import { event } from "../config/event.js";
 import InfoCard from "./InfoCard.astro";
 
-// Si solo hay una card, ocupa una columna; si son 2+, dos columnas en sm.
 const cols = event.info.length > 1 ? "sm:grid-cols-2" : "sm:grid-cols-1 sm:max-w-sm sm:mx-auto";
 ---
 
 <section
-  class="px-6 py-8"
-  aria-label="Detalles del evento"
+  class="px-6 py-16 sm:py-20"
+  aria-labelledby="dresscode-title"
   data-info-section
 >
-  <div class={`mx-auto grid max-w-md grid-cols-1 gap-5 ${cols}`}>
-    {event.info.map((card, i) => (
-      <InfoCard
-        id={`infocard-${card.key}`}
-        label={card.label}
-        title={card.title}
-        description={card.description}
-        image={card.image}
-        icon={card.icon as "sparkles" | "hanger"}
-        variant={i === 0 ? "soft" : "white"}
-      />
-    ))}
+  <div class="mx-auto max-w-md">
+    <!-- Section header -->
+    <div class="mb-8">
+      <p class="mb-1 font-sans text-[9px] font-bold uppercase tracking-[0.45em] text-chrome-500">
+        Vestimenta
+      </p>
+      <h2
+        id="dresscode-title"
+        class="font-sans text-2xl font-black uppercase tracking-tight text-chrome-900 sm:text-3xl"
+      >
+        Dress Code
+      </h2>
+      <div class="mt-3 h-[2px] w-10 bg-chrome-900" aria-hidden="true"></div>
+    </div>
+
+    <!-- Cards grid -->
+    <div class={`grid grid-cols-1 gap-5 ${cols}`}>
+      {event.info.map((card, i) => (
+        <InfoCard
+          id={`infocard-${card.key}`}
+          label={card.label}
+          title={card.title}
+          description={card.description}
+          image={card.image}
+          icon={card.icon as "sparkles" | "hanger"}
+          variant={i === 0 ? "soft" : "white"}
+        />
+      ))}
+    </div>
   </div>
 </section>
 

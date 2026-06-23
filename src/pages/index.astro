@@ -1,23 +1,24 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Hero from "../components/Hero.astro";
+import OurStory from "../components/OurStory.astro";
 import Countdown from "../components/Countdown.astro";
-import InfoCards from "../components/InfoCards.astro";
-import Gallery from "../components/Gallery.astro";
-import EventHighlight from "../components/EventHighlight.astro";
-import Location from "../components/Location.astro";
 import EventTimeline from "../components/EventTimeline.astro";
+import Location from "../components/Location.astro";
+import Gallery from "../components/Gallery.astro";
+import InfoCards from "../components/InfoCards.astro";
 import RSVPButton from "../components/RSVPButton.astro";
 import Footer from "../components/Footer.astro";
 ---
 
 <MainLayout>
   <Hero />
+  <OurStory />
   <Countdown />
-  <InfoCards />
-  <Gallery />
-  <Location />
   <EventTimeline />
+  <Location />
+  <Gallery />
+  <InfoCards />
   <RSVPButton />
   <Footer />
 </MainLayout>

@@ -8,10 +8,10 @@ const endDate = new Date(start);
 endDate.setHours(endDate.getHours() + 3);
 const end = endDate.toISOString().slice(0, 19);
 
-const uid  = `karen-birthday-2026@birthday-invite`;
+const uid  = `our-wedding-2026@wedding-invite`;
 const now  = new Date().toISOString().replace(/[-:.]/g, "").slice(0, 15) + "Z";
 const summary = `${event.calendar.title} ${event.calendar.subtitle}`.trim();
-const desc = `¡Celebra con nosotros el cumpleaños de ${event.honoree.name}!`;
+const desc = `¡Acómpañanos a celebrar nuestra boda!`;
 
 const ics = [
   "BEGIN:VCALENDAR",

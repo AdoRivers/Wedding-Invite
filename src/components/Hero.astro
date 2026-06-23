@@ -8,8 +8,8 @@ import { event } from "../config/event.js";
   aria-labelledby="hero-title"
 >
 
-  <!-- ══════════════════ GUIRNALDA — se superpone sobre la imagen ══════════════════ -->
-  <div class="garland relative z-10 h-16 w-full shrink-0 overflow-visible sm:h-20 -mb-16 sm:-mb-20" aria-hidden="true">
+  <!-- ══════════════════ GUIRNALDA ══════════════════ -->
+  <div class="garland relative z-30 h-16 w-full shrink-0 overflow-visible sm:h-20 -mb-16 sm:-mb-20" aria-hidden="true">
     <svg class="absolute inset-0 h-full w-full" viewBox="0 0 390 56" preserveAspectRatio="none">
       <path d="M-10 8 Q55 38 120 12 Q195 -8 270 16 Q330 36 400 10"
         fill="none" stroke="#D4AF37" stroke-width="1" opacity="0.7"/>
@@ -25,13 +25,12 @@ import { event } from "../config/event.js";
     <div class="g-item absolute origin-top" style="left:93%; top:0px;"  data-sw="a"><svg viewBox="0 0 80 80" width="38" height="38"><use href="#s5"/></svg></div>
   </div>
 
-  <!-- ══════════════════ STAGE — imagen de fondo ══════════════════ -->
+  <!-- ══════════════════ STAGE ══════════════════ -->
   <div class="stage relative flex-1 overflow-visible">
 
-    <!-- Imagen de fondo festiva -->
     <img
-      src="/images/BodaDeOro.svg"
-      alt=""
+      src={event.couple.portrait}
+      alt="Cover"
       aria-hidden="true"
       class="absolute inset-0 h-full w-full object-cover object-bottom sm:object-center"
       loading="eager"
@@ -39,54 +38,26 @@ import { event } from "../config/event.js";
       decoding="async"
     />
 
-    <!-- Degradado superior: muy sutil, solo para legibilidad del texto -->
-    <div class="absolute inset-x-0 top-0 h-[35%] bg-gradient-to-b from-white/60 to-transparent pointer-events-none" aria-hidden="true"></div>
-    <!-- Degradado inferior: leve transición al blanco -->
-    <div class="absolute inset-x-0 bottom-0 h-[20%] bg-gradient-to-t from-white/70 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Top gradient for text legibility -->
+    <div class="absolute inset-x-0 top-0 h-[60%] bg-linear-to-b from-white/96 via-white/60 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Bottom fade -->
+    <div class="absolute inset-x-0 bottom-0 h-[22%] bg-linear-to-t from-white to-transparent pointer-events-none" aria-hidden="true"></div>
 
-    <!-- Texto en arco sobre el degradado superior -->
-    <!-- 
-    <div class="arc-text pointer-events-none absolute inset-x-0 top-0 z-20 flex items-start justify-center pt-4" aria-hidden="true">
-      <svg viewBox="0 0 360 160" class="w-full max-w-[500px]" preserveAspectRatio="xMidYMin meet">
-        <defs>
-          <path id="ae" d="M 40,100 A 260,260 0 0,1 320,100" fill="none"/>
-          <path id="at" d="M   0,158 A 340,340 0 0,1 360,158" fill="none"/>
-        </defs>
-        <text font-family="var(--font-sans),sans-serif" font-weight="700" letter-spacing="0.35em" text-anchor="middle" fill="var(--color-chrome-400)" font-size="20">
-          <textPath href="#ae" startOffset="50%">{event.hero.eyebrow.toUpperCase()}</textPath>
-        </text>
-        <text font-family="var(--font-sans),sans-serif" font-weight="900" letter-spacing="-0.01em" text-anchor="middle" fill="var(--color-leaf-800)" font-size="44">
-          <textPath href="#at" startOffset="50%">{event.hero.title.toUpperCase()}</textPath>
-        </text>
-      </svg>
-    </div>
--->
-    <!-- h1 semántico -->
     <h1 id="hero-title" class="sr-only">{event.hero.eyebrow} {event.hero.title}</h1>
 
-  </div><!-- /stage -->
-
-  <!-- ══════════════════ PILLS ══════════════════ -->
-  <div class="relative z-20 px-5 pt-3 pb-5">
-    <div class="flex flex-wrap justify-center gap-1.5">
-      <span class="rounded-full bg-leaf-100 px-3.5 py-1.5 font-sans text-[9.5px] font-bold tracking-[0.18em] uppercase text-leaf-700">
-        {event.dateLabel.short}
-      </span>
-      <span class="rounded-full border border-chrome-300 px-3.5 py-1.5 font-sans text-[9.5px] font-bold tracking-[0.18em] uppercase text-chrome-600">
-        {event.timeLabel}
-      </span>
-      <span class="rounded-full bg-chrome-100 border border-chrome-300 px-3.5 py-1.5 font-sans text-[9.5px] font-bold tracking-[0.18em] uppercase text-chrome-600">
-        {event.info[0]?.title ?? "Semiformal"}
-      </span>
-    </div>
   </div>
 
-  <!-- Mesa de regalos -->
-  <div class="z-20 flex flex-col items-center gap-1 py-4 pb-6">
-    <p class="font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-chrome-400">
-      mesa de regalos
-    </p>
-    <p class="text-xl" aria-hidden="true">💍 &nbsp; 💌</p>
+  <!-- ══════════════════ PILLS ══════════════════ -->
+  <div class="hero-copy relative z-20 flex justify-center pb-8 pt-4 px-6">
+    <div class="inline-flex items-center gap-2.5 rounded-full border border-chrome-300/80 bg-white/85 px-5 py-2 backdrop-blur-sm">
+      <span class="font-sans text-[9.5px] font-bold uppercase tracking-[0.22em] text-chrome-600">
+        {event.dateLabel.day} {event.dateLabel.month} 2026
+      </span>
+      <span class="h-3.5 w-px bg-chrome-300" aria-hidden="true"></span>
+      <span class="font-sans text-[9.5px] font-bold uppercase tracking-[0.22em] text-chrome-600">
+        {event.timeLabel}
+      </span>
+    </div>
   </div>
 
   <!-- SVG SYMBOLS -->
@@ -129,16 +100,13 @@ import { event } from "../config/event.js";
 </section>
 
 <style>
-/* Guirnalda se superpone sobre la imagen */
-.garland { position: relative; z-index: 10; }
+.garland { position: relative; z-index: 30; }
 
-/* Stage: altura mínima según breakpoint */
 .stage {
   min-height: 65vw;
-  /* Clip solo la imagen interna, no el contenido que sobresale (guirnalda) */
 }
 .stage > img {
-  clip-path: inset(0);   /* recorta la imagen al stage sin afectar elementos z superiores */
+  clip-path: inset(0);
 }
 @media (min-width: 640px) {
   .stage { min-height: 420px; }
@@ -147,8 +115,6 @@ import { event } from "../config/event.js";
   .stage { min-height: 520px; }
 }
 
-
-/* Guirnalda swing */
 @media (prefers-reduced-motion: no-preference) {
   .g-item             { animation: swing 4.5s ease-in-out infinite; }
   .g-item[data-sw="b"]{ animation-duration: 5.5s; animation-delay: 0.5s; }
@@ -165,24 +131,21 @@ import { event } from "../config/event.js";
 
   const hero = document.getElementById("hero");
   if (hero) {
-    const garland = hero.querySelector<HTMLElement>(".garland");
-    const heroBg  = hero.querySelector<HTMLImageElement>(".stage img");
-    const arcText = hero.querySelector<HTMLElement>(".arc-text");
-    const pills   = hero.querySelectorAll<HTMLElement>("[class*='rounded-full']");
+    const garland  = hero.querySelector<HTMLElement>(".garland");
+    const heroBg   = hero.querySelector<HTMLImageElement>(".stage img");
+    const heroCopy = hero.querySelector<HTMLElement>(".hero-copy");
 
     if (prefersReducedMotion) {
-      gsap.set([garland, heroBg, arcText, pills], { opacity: 1, y: 0, scale: 1 });
+      gsap.set([garland, heroBg, heroCopy], { opacity: 1, y: 0, scale: 1 });
     } else {
       gsap.set(garland,  { opacity: 0, y: -28 });
       gsap.set(heroBg,   { opacity: 0, scale: 1.04 });
-      gsap.set(arcText,  { opacity: 0 });
-      gsap.set(pills,    { opacity: 0, y: 12 });
+      gsap.set(heroCopy, { opacity: 0, y: 10 });
 
       gsap.timeline({ delay: 0.06 })
         .to(garland,  { opacity: 1, y: 0, duration: 0.7, ease: "back.out(1.5)" })
         .to(heroBg,   { opacity: 1, scale: 1, duration: 1.1, ease: "power2.out" }, "-=0.4")
-        .to(arcText,  { opacity: 1, duration: 0.7, ease: EASE.out }, "-=0.5")
-        .to(pills,    { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: EASE.out }, "-=0.2");
+        .to(heroCopy, { opacity: 1, y: 0, duration: 0.6, ease: EASE.out }, "-=0.3");
     }
   }
 </script>

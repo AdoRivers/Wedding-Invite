@@ -8,7 +8,7 @@ const endISO = endDate.toISOString().slice(0, 19);
 
 const fmt   = (s: string) => s.replace(/[-:]/g, "").slice(0, 15);
 const title = `${event.calendar.title} ${event.calendar.subtitle}`.trim();
-const desc  = `¡Celebra con nosotros el cumpleaños de ${event.honoree.name}!`;
+const desc  = `¡Acómpañanos a celebrar nuestra boda!`;
 const loc   = event.locations.venue.address;
 
 // Google Calendar URL — Android, Windows, otros
@@ -51,11 +51,25 @@ const label = event.rsvp.label;
 ---
 
 <section
-  class="px-6 py-12"
-  aria-label="Confirmar asistencia"
+  class="px-6 py-16 sm:py-20"
+  aria-labelledby="rsvp-title"
   data-rsvp-section
 >
-  <div class="mx-auto max-w-md">
+  <div class="mx-auto max-w-md text-center">
+
+    <!-- Section header -->
+    <p class="font-sans text-[9px] font-bold uppercase tracking-[0.45em] text-chrome-500">
+      ¿Nos acompañas?
+    </p>
+    <h2
+      id="rsvp-title"
+      class="font-vibes mt-1 text-5xl leading-tight text-chrome-800 sm:text-6xl"
+    >
+      Confirma tu Asistencia
+    </h2>
+    <p class="mx-auto mt-3 mb-8 max-w-[28ch] font-script text-sm italic text-chrome-600 text-balance">
+      Guarda la fecha en tu calendario
+    </p>
 
     <a
       id="cal-btn"
