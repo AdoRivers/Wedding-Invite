@@ -11,7 +11,7 @@ const title = `${event.calendar.title} ${event.calendar.subtitle}`.trim();
 const desc  = `¡Acómpañanos a celebrar nuestra boda!`;
 const loc   = event.locations.venue.address;
 
-// Google Calendar URL — Android, Windows, otros
+// Google Calendar URL — Android, Windows y demás
 const googleURL = [
   "https://calendar.google.com/calendar/render?action=TEMPLATE",
   `&text=${encodeURIComponent(title)}`,
@@ -19,33 +19,6 @@ const googleURL = [
   `&details=${encodeURIComponent(desc)}`,
   `&location=${encodeURIComponent(loc)}`,
 ].join("");
-
-// Contenido ICS generado en servidor — se pasa al cliente vía define:vars
-// El script crea un Blob en memoria y lo abre con window.open()
-// iOS/macOS interceptan text/calendar y lanzan Apple Calendario directamente.
-const now = new Date().toISOString().replace(/[-:.]/g, "").slice(0, 15) + "Z";
-const icsContent = [
-  "BEGIN:VCALENDAR",
-  "VERSION:2.0",
-  "PRODID:-//Birthday Invite//EN",
-  "CALSCALE:GREGORIAN",
-  "METHOD:PUBLISH",
-  "BEGIN:VEVENT",
-  `UID:karen-birthday@birthday-invite`,
-  `DTSTAMP:${now}`,
-  `DTSTART;TZID=America/Monterrey:${fmt(startISO)}`,
-  `DTEND;TZID=America/Monterrey:${fmt(endISO)}`,
-  `SUMMARY:${title}`,
-  `DESCRIPTION:${desc}`,
-  `LOCATION:${loc}`,
-  "BEGIN:VALARM",
-  "TRIGGER:-PT60M",
-  "ACTION:DISPLAY",
-  "DESCRIPTION:Recordatorio — ¡Hoy es la fiesta!",
-  "END:VALARM",
-  "END:VEVENT",
-  "END:VCALENDAR",
-].join("\r\n");
 
 const label = event.rsvp.label;
 ---
@@ -119,28 +92,16 @@ const label = event.rsvp.label;
   </div>
 </section>
 
-<script define:vars={{ googleURL, icsContent }}>
+<script define:vars={{ googleURL }}>
   const btn  = document.getElementById("cal-btn");
   const hint = document.getElementById("cal-hint");
-  const ua   = navigator.userAgent;
-  const isApple = /iphone|ipad|ipod|macintosh/i.test(ua);
+  const isApple = /iphone|ipad|ipod|macintosh/i.test(navigator.userAgent);
 
   if (isApple) {
+    // iOS/macOS: el archivo .ics es interceptado por el sistema y abre Apple Calendario
+    btn?.setAttribute("href", "/evento.ics");
     btn?.removeAttribute("target");
     btn?.removeAttribute("rel");
-
-    btn?.addEventListener("click", (e) => {
-      e.preventDefault();
-      // Crear Blob en memoria con el contenido ICS
-      const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
-      const url  = URL.createObjectURL(blob);
-      // window.open en mismo tab → iOS/macOS interceptan text/calendar
-      // y lanzan Apple Calendario directamente sin guardar archivo
-      window.location.assign(url);
-      // Limpiar el object URL después de que el sistema lo haya procesado
-      setTimeout(() => URL.revokeObjectURL(url), 3000);
-    });
-
     if (hint) hint.textContent = "Se abrirá Apple Calendario.";
   } else {
     btn?.setAttribute("href", googleURL);
